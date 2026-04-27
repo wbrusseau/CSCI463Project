@@ -28,13 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginPage));
             LoginButton = new Button();
             UserIdText = new TextBox();
             PasswordText = new TextBox();
             label1 = new Label();
             LoginPanel = new Panel();
             panel1 = new Panel();
+            label2 = new Label();
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // LoginButton
@@ -72,11 +76,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 26F);
-            label1.Location = new Point(39, 52);
+            label1.Font = new Font("Segoe UI", 48F);
+            label1.Location = new Point(471, 318);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(246, 70);
+            label1.Size = new Size(455, 128);
             label1.TabIndex = 4;
             label1.Text = "ClearPath";
             // 
@@ -91,8 +95,8 @@
             // panel1
             // 
             panel1.BackColor = Color.Gray;
-            panel1.Controls.Add(label1);
             panel1.Controls.Add(PasswordText);
+            panel1.Controls.Add(label2);
             panel1.Controls.Add(UserIdText);
             panel1.Controls.Add(LoginButton);
             panel1.Location = new Point(0, 0);
@@ -100,19 +104,43 @@
             panel1.Size = new Size(336, 564);
             panel1.TabIndex = 5;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 26F);
+            label2.Location = new Point(80, 49);
+            label2.Name = "label2";
+            label2.Size = new Size(157, 70);
+            label2.TabIndex = 6;
+            label2.Text = "Login";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(584, 88);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(220, 177);
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
+            // 
             // LoginPage
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1000, 562);
+            Controls.Add(pictureBox1);
+            Controls.Add(label1);
             Controls.Add(panel1);
             Margin = new Padding(4);
             Name = "LoginPage";
             Text = "Login Page";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -123,5 +151,7 @@
         private Label label1;
         private Panel LoginPanel;
         private Panel panel1;
+        private Label label2;
+        private PictureBox pictureBox1;
     }
 }
