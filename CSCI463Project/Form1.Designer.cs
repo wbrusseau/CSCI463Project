@@ -38,29 +38,37 @@
             // 
             // LoginButton
             // 
-            LoginButton.Location = new Point(85, 299);
+            LoginButton.Location = new Point(68, 240);
+            LoginButton.Margin = new Padding(2, 2, 2, 2);
             LoginButton.Name = "LoginButton";
-            LoginButton.Size = new Size(124, 48);
+            LoginButton.Size = new Size(99, 38);
             LoginButton.TabIndex = 0;
             LoginButton.Text = "LOGIN";
             LoginButton.UseVisualStyleBackColor = true;
             LoginButton.Click += LoginButton_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.White;
+            pictureBox1.Location = new Point(292, -11);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(510, 466);
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
             // UserIdText
             // 
-            UserIdText.ForeColor = Color.Black;
-            UserIdText.Location = new Point(44, 164);
+            UserIdText.ForeColor = Color.Gray;
+            UserIdText.Location = new Point(44, 165);
             UserIdText.Name = "UserIdText";
-            UserIdText.PlaceholderText = "UserID";
             UserIdText.Size = new Size(206, 31);
             UserIdText.TabIndex = 2;
             // 
             // PasswordText
             // 
-            PasswordText.ForeColor = Color.Black;
-            PasswordText.Location = new Point(44, 221);
+            PasswordText.ForeColor = Color.Gray;
+            PasswordText.Location = new Point(44, 222);
             PasswordText.Name = "PasswordText";
-            PasswordText.PlaceholderText = "Password";
             PasswordText.Size = new Size(206, 31);
             PasswordText.TabIndex = 3;
             // 
@@ -68,9 +76,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 26F);
-            label1.Location = new Point(31, 41);
+            label1.Location = new Point(31, 42);
             label1.Name = "label1";
-            label1.Size = new Size(246, 70);
+            label1.Size = new Size(231, 70);
             label1.TabIndex = 4;
             label1.Text = "ClearPath";
             // 
@@ -88,11 +96,15 @@
             // 
             // LoginPage
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.FromArgb(255, 192, 255);
             ClientSize = new Size(800, 450);
-            Controls.Add(LoginPanel);
+            Controls.Add(label1);
+            Controls.Add(PasswordText);
+            Controls.Add(UserIdText);
+            Controls.Add(pictureBox1);
+            Controls.Add(LoginButton);
             Name = "LoginPage";
             Text = "Login Page";
             LoginPanel.ResumeLayout(false);
