@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             LoginButton = new Button();
-            pictureBox1 = new PictureBox();
             UserIdText = new TextBox();
             PasswordText = new TextBox();
             label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            LoginPanel = new Panel();
+            LoginPanel.SuspendLayout();
             SuspendLayout();
             // 
             // LoginButton
             // 
-            LoginButton.Location = new Point(85, 300);
+            LoginButton.Location = new Point(85, 299);
             LoginButton.Name = "LoginButton";
             LoginButton.Size = new Size(124, 48);
             LoginButton.TabIndex = 0;
@@ -46,68 +46,66 @@
             LoginButton.UseVisualStyleBackColor = true;
             LoginButton.Click += LoginButton_Click;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.White;
-            pictureBox1.Location = new Point(292, -11);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(510, 466);
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
-            // 
             // UserIdText
             // 
-            UserIdText.ForeColor = Color.Gray;
-            UserIdText.Location = new Point(44, 165);
+            UserIdText.ForeColor = Color.Black;
+            UserIdText.Location = new Point(44, 164);
             UserIdText.Name = "UserIdText";
+            UserIdText.PlaceholderText = "UserID";
             UserIdText.Size = new Size(206, 31);
             UserIdText.TabIndex = 2;
-            UserIdText.Text = "UserID";
-            UserIdText.TextChanged += UserIdText_TextChanged;
             // 
             // PasswordText
             // 
-            PasswordText.ForeColor = Color.Gray;
-            PasswordText.Location = new Point(44, 222);
+            PasswordText.ForeColor = Color.Black;
+            PasswordText.Location = new Point(44, 221);
             PasswordText.Name = "PasswordText";
+            PasswordText.PlaceholderText = "Password";
             PasswordText.Size = new Size(206, 31);
             PasswordText.TabIndex = 3;
-            PasswordText.Text = "Password";
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 26F);
-            label1.Location = new Point(31, 42);
+            label1.Location = new Point(31, 41);
             label1.Name = "label1";
-            label1.Size = new Size(231, 70);
+            label1.Size = new Size(246, 70);
             label1.TabIndex = 4;
-            label1.Text = "Software";
+            label1.Text = "ClearPath";
+            // 
+            // LoginPanel
+            // 
+            LoginPanel.BackColor = Color.DarkGray;
+            LoginPanel.Controls.Add(label1);
+            LoginPanel.Controls.Add(PasswordText);
+            LoginPanel.Controls.Add(UserIdText);
+            LoginPanel.Controls.Add(LoginButton);
+            LoginPanel.Location = new Point(0, 1);
+            LoginPanel.Name = "LoginPanel";
+            LoginPanel.Size = new Size(310, 449);
+            LoginPanel.TabIndex = 5;
             // 
             // LoginPage
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(255, 192, 255);
+            BackColor = Color.White;
             ClientSize = new Size(800, 450);
-            Controls.Add(label1);
-            Controls.Add(PasswordText);
-            Controls.Add(UserIdText);
-            Controls.Add(pictureBox1);
-            Controls.Add(LoginButton);
+            Controls.Add(LoginPanel);
             Name = "LoginPage";
             Text = "Login Page";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            LoginPanel.ResumeLayout(false);
+            LoginPanel.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private Button LoginButton;
-        private PictureBox pictureBox1;
         private TextBox UserIdText;
         private TextBox PasswordText;
         private Label label1;
+        private Panel LoginPanel;
     }
 }

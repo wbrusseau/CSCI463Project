@@ -1,6 +1,6 @@
 ﻿namespace CSCI463Project
 {
-    partial class Dashboard
+    partial class Alerts
     {
         /// <summary>
         /// Required designer variable.
@@ -19,16 +19,9 @@
             }
             base.Dispose(disposing);
         }
-
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Alerts));
             LogoutButton = new Button();
             panel1 = new Panel();
             label1 = new Label();
@@ -37,7 +30,7 @@
             TreatmentPlan = new Button();
             Prescriptions = new Button();
             Appointments = new Button();
-            Alerts = new Button();
+            AlertsButton = new Button();
             Home = new Button();
             panel3 = new Panel();
             panel4 = new Panel();
@@ -92,7 +85,7 @@
             panel2.Controls.Add(TreatmentPlan);
             panel2.Controls.Add(Prescriptions);
             panel2.Controls.Add(Appointments);
-            panel2.Controls.Add(Alerts);
+            panel2.Controls.Add(AlertsButton);
             panel2.Controls.Add(Home);
             panel2.Location = new Point(0, 51);
             panel2.Name = "panel2";
@@ -139,7 +132,7 @@
             Prescriptions.Text = "My Prescriptions";
             Prescriptions.TextAlign = ContentAlignment.MiddleLeft;
             Prescriptions.UseVisualStyleBackColor = false;
-            Prescriptions.Click += Prescriptions_Click;
+            Prescriptions.Click += Prescriptions_Click_1;
             // 
             // Appointments
             // 
@@ -153,26 +146,25 @@
             Appointments.Text = "Appointments";
             Appointments.TextAlign = ContentAlignment.MiddleLeft;
             Appointments.UseVisualStyleBackColor = false;
-            Appointments.Click += button2_Click;
+            Appointments.Click += Appointments_Click;
             // 
-            // Alerts
+            // AlertsButton
             // 
-            Alerts.BackColor = Color.White;
-            Alerts.FlatAppearance.BorderSize = 0;
-            Alerts.FlatStyle = FlatStyle.Popup;
-            Alerts.Location = new Point(0, 62);
-            Alerts.Name = "Alerts";
-            Alerts.Size = new Size(164, 54);
-            Alerts.TabIndex = 1;
-            Alerts.Text = "Alerts";
-            Alerts.TextAlign = ContentAlignment.MiddleLeft;
-            Alerts.UseVisualStyleBackColor = false;
-            Alerts.Click += Alerts_Click;
+            AlertsButton.BackColor = Color.White;
+            AlertsButton.Enabled = false;
+            AlertsButton.FlatAppearance.BorderSize = 0;
+            AlertsButton.FlatStyle = FlatStyle.Popup;
+            AlertsButton.Location = new Point(0, 62);
+            AlertsButton.Name = "AlertsButton";
+            AlertsButton.Size = new Size(164, 54);
+            AlertsButton.TabIndex = 1;
+            AlertsButton.Text = "Alerts";
+            AlertsButton.TextAlign = ContentAlignment.MiddleLeft;
+            AlertsButton.UseVisualStyleBackColor = false;
             // 
             // Home
             // 
             Home.BackColor = Color.White;
-            Home.Enabled = false;
             Home.FlatAppearance.BorderSize = 0;
             Home.FlatStyle = FlatStyle.Popup;
             Home.Location = new Point(0, 2);
@@ -228,8 +220,9 @@
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(260, 54);
             textBox1.TabIndex = 5;
+            textBox1.Text = "Alerts";
             // 
-            // Dashboard
+            // Alerts
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -240,9 +233,8 @@
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "Dashboard";
-            Text = "Dashboard";
-            Load += Dashboard_Load;
+            Name = "Alerts";
+            Text = "Alerts";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -252,13 +244,13 @@
             PerformLayout();
         }
 
-        #endregion
+
 
         private Button LogoutButton;
         private Panel panel1;
         private Panel panel2;
         private Label label1;
-        private Button Alerts;
+        private Button AlertsButton;
         private Button Home;
         private Button Messages;
         private Button TreatmentPlan;

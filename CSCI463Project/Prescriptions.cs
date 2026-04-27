@@ -1,0 +1,68 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CSCI463Project
+{
+    public partial class Prescriptions : Form
+    {
+        public Prescriptions()
+        {
+            InitializeComponent();
+        }
+
+        private void HomeButton_Click(object sender, EventArgs e)
+        {
+            Dashboard dashboard = new Dashboard();
+            this.Hide();
+            dashboard.ShowDialog();
+            this.Close();
+        }
+
+        private void AlertsButton_Click(object sender, EventArgs e)
+        {
+            Alerts asForm = new Alerts();
+            this.Hide();
+            asForm.ShowDialog();
+            this.Close();
+        }
+
+        private void AppointmentsButton_Click(object sender, EventArgs e)
+        {
+            Appointments apForm = new Appointments();
+            this.Hide();
+            apForm.ShowDialog();
+            this.Close();
+        }
+
+        private void TreatmentPlanButton_Click(object sender, EventArgs e)
+        {
+            TreatmentPlan tpForm = new TreatmentPlan();
+            this.Hide();
+            tpForm.ShowDialog();
+            this.Close();
+        }
+
+        private void MessagesButton_Click(object sender, EventArgs e)
+        {
+            Messages msForm = new Messages();
+            this.Hide();
+            msForm.ShowDialog();
+            this.Close();
+        }
+
+        private void LogoutButton_Click(object sender, EventArgs e)
+        {
+            LoginPage lgPage = new LoginPage();
+            this.Hide();
+            lgPage.ShowDialog();
+            this.Close();
+        }
+    }
+}

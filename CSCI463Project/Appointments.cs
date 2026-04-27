@@ -10,44 +10,26 @@ using System.Windows.Forms;
 
 namespace CSCI463Project
 {
-    public partial class Dashboard : Form
+    public partial class Appointments : Form
     {
-        public Dashboard()
+        public Appointments()
         {
             InitializeComponent();
         }
 
-        private void Dashboard_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Appointments apForm = new Appointments();
-            this.Hide();
-            apForm.ShowDialog();
-            this.Close();
-        }
-
-        private void LogoutButton_Click(object sender, EventArgs e)
-        {
-            LoginPage lgPage = new LoginPage();
-            this.Hide();
-            lgPage.ShowDialog();
-            this.Close();
-        }
-
         private void Home_Click(object sender, EventArgs e)
         {
-
+            Dashboard dashboard = new Dashboard();
+            this.Hide();
+            dashboard.ShowDialog();
+            this.Close();
         }
 
-        private void Alerts_Click(object sender, EventArgs e)
+        private void AlertsButton_Click(object sender, EventArgs e)
         {
-            Alerts alForm = new Alerts();
+            Alerts asForm = new Alerts();
             this.Hide();
-            alForm.ShowDialog();
+            asForm.ShowDialog();
             this.Close();
         }
 
@@ -57,7 +39,6 @@ namespace CSCI463Project
             this.Hide();
             prForm.ShowDialog();
             this.Close();
-
         }
 
         private void TreatmentPlan_Click(object sender, EventArgs e)
@@ -66,7 +47,6 @@ namespace CSCI463Project
             this.Hide();
             tpForm.ShowDialog();
             this.Close();
-
         }
 
         private void Messages_Click(object sender, EventArgs e)
@@ -74,6 +54,14 @@ namespace CSCI463Project
             Messages msForm = new Messages();
             this.Hide();
             msForm.ShowDialog();
+            this.Close();
+        }
+
+        private void LogoutButton_Click(object sender, EventArgs e)
+        {
+            LoginPage lgPage = new LoginPage();
+            this.Hide();
+            lgPage.ShowDialog();
             this.Close();
         }
     }
