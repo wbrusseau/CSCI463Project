@@ -28,13 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            string userRole = Session.UserRole; // Get the user role from the session
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             LogoutButton = new Button();
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
             Messages = new Button();
-            TreatmentPlan = new Button();
+            if (userRole == "Patient")
+            {
+                TreatmentPlan = new Button();
+            }
             Prescriptions = new Button();
             Appointments = new Button();
             Alerts = new Button();
@@ -115,17 +119,20 @@
             // 
             // TreatmentPlan
             // 
-            TreatmentPlan.BackColor = Color.White;
-            TreatmentPlan.FlatAppearance.BorderSize = 0;
-            TreatmentPlan.FlatStyle = FlatStyle.Popup;
-            TreatmentPlan.Location = new Point(0, 242);
-            TreatmentPlan.Name = "TreatmentPlan";
-            TreatmentPlan.Size = new Size(164, 54);
-            TreatmentPlan.TabIndex = 4;
-            TreatmentPlan.Text = "Treatment Plan";
-            TreatmentPlan.TextAlign = ContentAlignment.MiddleLeft;
-            TreatmentPlan.UseVisualStyleBackColor = false;
-            TreatmentPlan.Click += TreatmentPlan_Click;
+            if (userRole == "Patient") {
+                TreatmentPlan.BackColor = Color.White;
+                TreatmentPlan.FlatAppearance.BorderSize = 0;
+                TreatmentPlan.FlatStyle = FlatStyle.Popup;
+                TreatmentPlan.Location = new Point(0, 242);
+                TreatmentPlan.Name = "TreatmentPlan";
+                TreatmentPlan.Size = new Size(164, 54);
+                TreatmentPlan.TabIndex = 4;
+                TreatmentPlan.Text = "Treatment Plan";
+                TreatmentPlan.TextAlign = ContentAlignment.MiddleLeft;
+                TreatmentPlan.UseVisualStyleBackColor = false;
+                TreatmentPlan.Click += TreatmentPlan_Click;
+            }
+            
             // 
             // Prescriptions
             // 

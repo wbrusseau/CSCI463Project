@@ -67,6 +67,7 @@
             PasswordText.PlaceholderText = "Password";
             PasswordText.Size = new Size(256, 31);
             PasswordText.TabIndex = 3;
+            PasswordText.UseSystemPasswordChar = true;
             // 
             // label1
             // 
