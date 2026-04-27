@@ -47,15 +47,6 @@
             LoginButton.UseVisualStyleBackColor = true;
             LoginButton.Click += LoginButton_Click;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.White;
-            pictureBox1.Location = new Point(292, -11);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(510, 466);
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
-            // 
             // UserIdText
             // 
             UserIdText.ForeColor = Color.Gray;
@@ -103,7 +94,6 @@
             Controls.Add(label1);
             Controls.Add(PasswordText);
             Controls.Add(UserIdText);
-            Controls.Add(pictureBox1);
             Controls.Add(LoginButton);
             Name = "LoginPage";
             Text = "Login Page";
