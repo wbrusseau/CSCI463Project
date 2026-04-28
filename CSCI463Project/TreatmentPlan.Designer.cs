@@ -216,11 +216,10 @@
             textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(197, 60);
             textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "JaneDoe";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(276, 54);
+            textBox1.Size = new Size(587, 54);
             textBox1.TabIndex = 5;
-            textBox1.Text = "Treatment Plan";
+            textBox1.Text = Session.Username + "'s Treatment Plan";
             // 
             // TreatmentPlan
             // 

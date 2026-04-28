@@ -20,13 +20,17 @@ namespace CSCI463Project
                 Session.UserRole = userRole;
                 Session.Username = userName;
 
-                if (UserIdText.Text == userName && PasswordText.Text == password)
+                if (UserIdText.Text == userName)
                 {
-                    Dashboard dashboard = new Dashboard();
-                    this.Hide();
-                    dashboard.ShowDialog();
-                    this.Close();
+                    if (PasswordText.Text == password)
+                    {
+                        Dashboard dashboard = new Dashboard();
+                        this.Hide();
+                        dashboard.ShowDialog();
+                        this.Close();
+                    }
                 }
+
             }
             MessageBox.Show("Invalid username or password. Please try again.");
         }

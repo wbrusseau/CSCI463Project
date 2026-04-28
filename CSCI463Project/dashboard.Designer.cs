@@ -28,18 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            string userRole = Session.UserRole; // Get the user role from the session
+            string userRole = Session.UserRole;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             LogoutButton = new Button();
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
             Messages = new Button();
-            if (userRole == "Patient")
-            {
-                TreatmentPlan = new Button();
-            }
             Prescriptions = new Button();
+            if (userRole == "Patient")
+                TreatmentPlan = new Button();
             Appointments = new Button();
             Alerts = new Button();
             Home = new Button();
@@ -93,7 +91,8 @@
             panel2.BackColor = Color.Gray;
             panel2.BackgroundImageLayout = ImageLayout.Zoom;
             panel2.Controls.Add(Messages);
-            panel2.Controls.Add(TreatmentPlan);
+            if (userRole == "Patient")
+                panel2.Controls.Add(TreatmentPlan);
             panel2.Controls.Add(Prescriptions);
             panel2.Controls.Add(Appointments);
             panel2.Controls.Add(Alerts);
@@ -119,7 +118,8 @@
             // 
             // TreatmentPlan
             // 
-            if (userRole == "Patient") {
+            if (userRole == "Patient")
+            {
                 TreatmentPlan.BackColor = Color.White;
                 TreatmentPlan.FlatAppearance.BorderSize = 0;
                 TreatmentPlan.FlatStyle = FlatStyle.Popup;
@@ -132,7 +132,6 @@
                 TreatmentPlan.UseVisualStyleBackColor = false;
                 TreatmentPlan.Click += TreatmentPlan_Click;
             }
-            
             // 
             // Prescriptions
             // 
@@ -231,9 +230,9 @@
             textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(197, 60);
             textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "JaneDoe";
+            textBox1.PlaceholderText = "Welcome " + Session.Username + "!";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(260, 54);
+            textBox1.Size = new Size(569, 54);
             textBox1.TabIndex = 5;
             // 
             // Dashboard

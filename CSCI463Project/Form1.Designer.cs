@@ -58,7 +58,7 @@
             UserIdText.Location = new Point(29, 203);
             UserIdText.Margin = new Padding(4);
             UserIdText.Name = "UserIdText";
-            UserIdText.PlaceholderText = "UserID";
+            UserIdText.PlaceholderText = "UserName";
             UserIdText.Size = new Size(256, 31);
             UserIdText.TabIndex = 2;
             // 
@@ -77,6 +77,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 48F);
+            label1.ForeColor = Color.Fuchsia;
             label1.Location = new Point(471, 318);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
@@ -118,9 +119,9 @@
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(584, 88);
+            pictureBox1.Location = new Point(569, 49);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(220, 177);
+            pictureBox1.Size = new Size(240, 216);
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 

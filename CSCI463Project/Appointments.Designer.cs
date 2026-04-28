@@ -21,15 +21,17 @@
         }
         private void InitializeComponent()
         {
+            string userRole = Session.UserRole;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Appointments));
             LogoutButton = new Button();
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
             Messages = new Button();
-            TreatmentPlan = new Button();
+            if (userRole == "Patient")
+                TreatmentPlan = new Button();
             Prescriptions = new Button();
-            Appintments = new Button();
+            AppointmentsButton = new Button();
             AlertsButton = new Button();
             Home = new Button();
             panel3 = new Panel();
@@ -84,7 +86,7 @@
             panel2.Controls.Add(Messages);
             panel2.Controls.Add(TreatmentPlan);
             panel2.Controls.Add(Prescriptions);
-            panel2.Controls.Add(Appintments);
+            panel2.Controls.Add(AppointmentsButton);
             panel2.Controls.Add(AlertsButton);
             panel2.Controls.Add(Home);
             panel2.Location = new Point(0, 51);
@@ -108,17 +110,20 @@
             // 
             // TreatmentPlan
             // 
-            TreatmentPlan.BackColor = Color.White;
-            TreatmentPlan.FlatAppearance.BorderSize = 0;
-            TreatmentPlan.FlatStyle = FlatStyle.Popup;
-            TreatmentPlan.Location = new Point(0, 242);
-            TreatmentPlan.Name = "TreatmentPlan";
-            TreatmentPlan.Size = new Size(164, 54);
-            TreatmentPlan.TabIndex = 4;
-            TreatmentPlan.Text = "Treatment Plan";
-            TreatmentPlan.TextAlign = ContentAlignment.MiddleLeft;
-            TreatmentPlan.UseVisualStyleBackColor = false;
-            TreatmentPlan.Click += TreatmentPlan_Click;
+            if (userRole == "Patient")
+            {
+                TreatmentPlan.BackColor = Color.White;
+                TreatmentPlan.FlatAppearance.BorderSize = 0;
+                TreatmentPlan.FlatStyle = FlatStyle.Popup;
+                TreatmentPlan.Location = new Point(0, 242);
+                TreatmentPlan.Name = "TreatmentPlan";
+                TreatmentPlan.Size = new Size(164, 54);
+                TreatmentPlan.TabIndex = 4;
+                TreatmentPlan.Text = "Treatment Plan";
+                TreatmentPlan.TextAlign = ContentAlignment.MiddleLeft;
+                TreatmentPlan.UseVisualStyleBackColor = false;
+                TreatmentPlan.Click += TreatmentPlan_Click;
+            }
             // 
             // Prescriptions
             // 
@@ -136,17 +141,17 @@
             // 
             // Appintments
             // 
-            Appintments.BackColor = Color.White;
-            Appintments.Enabled = false;
-            Appintments.FlatAppearance.BorderSize = 0;
-            Appintments.FlatStyle = FlatStyle.Popup;
-            Appintments.Location = new Point(0, 122);
-            Appintments.Name = "Appintments";
-            Appintments.Size = new Size(164, 54);
-            Appintments.TabIndex = 2;
-            Appintments.Text = "Appointments";
-            Appintments.TextAlign = ContentAlignment.MiddleLeft;
-            Appintments.UseVisualStyleBackColor = false;
+            AppointmentsButton.BackColor = Color.White;
+            AppointmentsButton.Enabled = false;
+            AppointmentsButton.FlatAppearance.BorderSize = 0;
+            AppointmentsButton.FlatStyle = FlatStyle.Popup;
+            AppointmentsButton.Location = new Point(0, 122);
+            AppointmentsButton.Name = "AppointmentsButton";
+            AppointmentsButton.Size = new Size(164, 54);
+            AppointmentsButton.TabIndex = 2;
+            AppointmentsButton.Text = "Appointments";
+            AppointmentsButton.TextAlign = ContentAlignment.MiddleLeft;
+            AppointmentsButton.UseVisualStyleBackColor = false;
             // 
             // AlertsButton
             // 
@@ -216,11 +221,10 @@
             textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(197, 60);
             textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "JaneDoe";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(260, 54);
+            textBox1.Size = new Size(569, 54);
             textBox1.TabIndex = 5;
-            textBox1.Text = "Appointments";
+            textBox1.Text = Session.Username + "'s Appointments";
             // 
             // Appointments
             // 
@@ -255,7 +259,7 @@
         private Button Messages;
         private Button TreatmentPlan;
         private Button Prescriptions;
-        private Button Appintments;
+        private Button AppointmentsButton;
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;

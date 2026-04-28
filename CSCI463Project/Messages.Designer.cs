@@ -21,13 +21,15 @@
         }
         private void InitializeComponent()
         {
+            string userRole = Session.UserRole;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Messages));
             LogoutButton = new Button();
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
             MessagesButton = new Button();
-            TreatmentPlanButton = new Button();
+            if (userRole == "Patient")
+                TreatmentPlanButton = new Button();
             PrescriptionsButton = new Button();
             AppointmentsButton = new Button();
             AlertsButton = new Button();
@@ -108,17 +110,20 @@
             // 
             // TreatmentPlanButton
             // 
-            TreatmentPlanButton.BackColor = Color.White;
-            TreatmentPlanButton.FlatAppearance.BorderSize = 0;
-            TreatmentPlanButton.FlatStyle = FlatStyle.Popup;
-            TreatmentPlanButton.Location = new Point(0, 242);
-            TreatmentPlanButton.Name = "TreatmentPlanButton";
-            TreatmentPlanButton.Size = new Size(164, 54);
-            TreatmentPlanButton.TabIndex = 4;
-            TreatmentPlanButton.Text = "Treatment Plan";
-            TreatmentPlanButton.TextAlign = ContentAlignment.MiddleLeft;
-            TreatmentPlanButton.UseVisualStyleBackColor = false;
-            TreatmentPlanButton.Click += TreatmentPlanButton_Click;
+            if (userRole == "Patient")
+            {
+                TreatmentPlanButton.BackColor = Color.White;
+                TreatmentPlanButton.FlatAppearance.BorderSize = 0;
+                TreatmentPlanButton.FlatStyle = FlatStyle.Popup;
+                TreatmentPlanButton.Location = new Point(0, 242);
+                TreatmentPlanButton.Name = "TreatmentPlanButton";
+                TreatmentPlanButton.Size = new Size(164, 54);
+                TreatmentPlanButton.TabIndex = 4;
+                TreatmentPlanButton.Text = "Treatment Plan";
+                TreatmentPlanButton.TextAlign = ContentAlignment.MiddleLeft;
+                TreatmentPlanButton.UseVisualStyleBackColor = false;
+                TreatmentPlanButton.Click += TreatmentPlanButton_Click;
+            }
             // 
             // PrescriptionsButton
             // 
@@ -216,11 +221,10 @@
             textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(197, 60);
             textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "JaneDoe";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(260, 54);
+            textBox1.Size = new Size(569, 54);
             textBox1.TabIndex = 5;
-            textBox1.Text = "Messages";
+            textBox1.Text = Session.Username + "'s Messages";
             // 
             // Messages
             // 
