@@ -28,8 +28,7 @@
             label1 = new Label();
             panel2 = new Panel();
             Messages = new Button();
-            if (UserRole == "Patient")
-                TreatmentPlan = new Button();
+            TreatmentPlan = new Button();
             Prescriptions = new Button();
             Appointments = new Button();
             AlertsButton = new Button();
@@ -109,21 +108,19 @@
             Messages.Click += Messages_Click;
             // 
             // TreatmentPlan
-            // 
-            if (UserRole == "Patient")
-            {
-                TreatmentPlan.BackColor = Color.White;
-                TreatmentPlan.FlatAppearance.BorderSize = 0;
-                TreatmentPlan.FlatStyle = FlatStyle.Popup;
-                TreatmentPlan.Location = new Point(0, 242);
-                TreatmentPlan.Name = "TreatmentPlan";
-                TreatmentPlan.Size = new Size(164, 54);
-                TreatmentPlan.TabIndex = 4;
-                TreatmentPlan.Text = "Treatment Plan";
-                TreatmentPlan.TextAlign = ContentAlignment.MiddleLeft;
-                TreatmentPlan.UseVisualStyleBackColor = false;
-                TreatmentPlan.Click += TreatmentPlan_Click;
-            }
+            //
+            TreatmentPlan.BackColor = Color.White;
+            TreatmentPlan.FlatAppearance.BorderSize = 0;
+            TreatmentPlan.FlatStyle = FlatStyle.Popup;
+            TreatmentPlan.Location = new Point(0, 242);
+            TreatmentPlan.Name = "TreatmentPlan";
+            TreatmentPlan.Size = new Size(164, 54);
+            TreatmentPlan.TabIndex = 4;
+            TreatmentPlan.Text = "Treatment Plan";
+            TreatmentPlan.TextAlign = ContentAlignment.MiddleLeft;
+            TreatmentPlan.UseVisualStyleBackColor = false;
+            TreatmentPlan.Click += TreatmentPlan_Click;
+
             // 
             // Prescriptions
             // 

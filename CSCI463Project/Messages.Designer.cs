@@ -28,8 +28,7 @@
             label1 = new Label();
             panel2 = new Panel();
             MessagesButton = new Button();
-            if (userRole == "Patient")
-                TreatmentPlanButton = new Button();
+            TreatmentPlanButton = new Button();
             PrescriptionsButton = new Button();
             AppointmentsButton = new Button();
             AlertsButton = new Button();
@@ -110,20 +109,17 @@
             // 
             // TreatmentPlanButton
             // 
-            if (userRole == "Patient")
-            {
-                TreatmentPlanButton.BackColor = Color.White;
-                TreatmentPlanButton.FlatAppearance.BorderSize = 0;
-                TreatmentPlanButton.FlatStyle = FlatStyle.Popup;
-                TreatmentPlanButton.Location = new Point(0, 242);
-                TreatmentPlanButton.Name = "TreatmentPlanButton";
-                TreatmentPlanButton.Size = new Size(164, 54);
-                TreatmentPlanButton.TabIndex = 4;
-                TreatmentPlanButton.Text = "Treatment Plan";
-                TreatmentPlanButton.TextAlign = ContentAlignment.MiddleLeft;
-                TreatmentPlanButton.UseVisualStyleBackColor = false;
-                TreatmentPlanButton.Click += TreatmentPlanButton_Click;
-            }
+            TreatmentPlanButton.BackColor = Color.White;
+            TreatmentPlanButton.FlatAppearance.BorderSize = 0;
+            TreatmentPlanButton.FlatStyle = FlatStyle.Popup;
+            TreatmentPlanButton.Location = new Point(0, 242);
+            TreatmentPlanButton.Name = "TreatmentPlanButton";
+            TreatmentPlanButton.Size = new Size(164, 54);
+            TreatmentPlanButton.TabIndex = 4;
+            TreatmentPlanButton.Text = "Treatment Plan";
+            TreatmentPlanButton.TextAlign = ContentAlignment.MiddleLeft;
+            TreatmentPlanButton.UseVisualStyleBackColor = false;
+            TreatmentPlanButton.Click += TreatmentPlanButton_Click;
             // 
             // PrescriptionsButton
             // 

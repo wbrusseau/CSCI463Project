@@ -66,5 +66,15 @@ namespace CSCI463Project
             lgForm.ShowDialog();
             this.Close();
         }
+
+        public string AlertList()
+        {
+            string alerts = "";
+            foreach (var alert in Session.AlertList(""))
+            {
+                
+            }
+            return alerts;
+        }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            string userRole = Session.UserRole;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             LogoutButton = new Button();
             panel1 = new Panel();
@@ -36,8 +35,7 @@
             panel2 = new Panel();
             Messages = new Button();
             Prescriptions = new Button();
-            if (userRole == "Patient")
-                TreatmentPlan = new Button();
+            TreatmentPlan = new Button();
             Appointments = new Button();
             Alerts = new Button();
             Home = new Button();
@@ -46,6 +44,8 @@
             panel5 = new Panel();
             panel6 = new Panel();
             textBox1 = new TextBox();
+            textBox2 = new TextBox();
+            textBox3 = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -91,9 +91,8 @@
             panel2.BackColor = Color.Gray;
             panel2.BackgroundImageLayout = ImageLayout.Zoom;
             panel2.Controls.Add(Messages);
-            if (userRole == "Patient")
-                panel2.Controls.Add(TreatmentPlan);
             panel2.Controls.Add(Prescriptions);
+            panel2.Controls.Add(TreatmentPlan);
             panel2.Controls.Add(Appointments);
             panel2.Controls.Add(Alerts);
             panel2.Controls.Add(Home);
@@ -116,23 +115,6 @@
             Messages.UseVisualStyleBackColor = false;
             Messages.Click += Messages_Click;
             // 
-            // TreatmentPlan
-            // 
-            if (userRole == "Patient")
-            {
-                TreatmentPlan.BackColor = Color.White;
-                TreatmentPlan.FlatAppearance.BorderSize = 0;
-                TreatmentPlan.FlatStyle = FlatStyle.Popup;
-                TreatmentPlan.Location = new Point(0, 242);
-                TreatmentPlan.Name = "TreatmentPlan";
-                TreatmentPlan.Size = new Size(164, 54);
-                TreatmentPlan.TabIndex = 4;
-                TreatmentPlan.Text = "Treatment Plan";
-                TreatmentPlan.TextAlign = ContentAlignment.MiddleLeft;
-                TreatmentPlan.UseVisualStyleBackColor = false;
-                TreatmentPlan.Click += TreatmentPlan_Click;
-            }
-            // 
             // Prescriptions
             // 
             Prescriptions.BackColor = Color.White;
@@ -146,6 +128,20 @@
             Prescriptions.TextAlign = ContentAlignment.MiddleLeft;
             Prescriptions.UseVisualStyleBackColor = false;
             Prescriptions.Click += Prescriptions_Click;
+            //
+            // TreatmentPlan
+            //
+            TreatmentPlan.BackColor = Color.White;
+            TreatmentPlan.FlatAppearance.BorderSize = 0;
+            TreatmentPlan.FlatStyle = FlatStyle.Popup;
+            TreatmentPlan.Location = new Point(0, 242);
+            TreatmentPlan.Name = "TreatmentPlan";
+            TreatmentPlan.Size = new Size(164, 54);
+            TreatmentPlan.TabIndex = 4;
+            TreatmentPlan.Text = "Treatment Plan";
+            TreatmentPlan.TextAlign = ContentAlignment.MiddleLeft;
+            TreatmentPlan.UseVisualStyleBackColor = false;
+            TreatmentPlan.Click += TreatmentPlan_Click;
             // 
             // Appointments
             // 
@@ -230,10 +226,29 @@
             textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(197, 60);
             textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Welcome " + Session.Username + "!";
+            textBox1.PlaceholderText = "Welcome !";
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(569, 54);
             textBox1.TabIndex = 5;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(476, 135);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.PlaceholderText = "No Appointments this week";
+            textBox2.Size = new Size(245, 281);
+            textBox2.TabIndex = 6;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(200, 139);
+            textBox3.Multiline = true;
+            textBox3.Name = "textBox3";
+            textBox3.PlaceholderText = "No current Patient alerts";
+            textBox3.Size = new Size(243, 282);
+            textBox3.TabIndex = 7;
+            textBox3.Text = Session.AlertCount() + " Current Patient Alerts";
             // 
             // Dashboard
             // 
@@ -241,6 +256,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(796, 438);
+            Controls.Add(textBox3);
+            Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(panel6);
             Controls.Add(panel3);
@@ -275,5 +292,7 @@
         private Panel panel5;
         private Panel panel6;
         private TextBox textBox1;
+        private TextBox textBox2;
+        private TextBox textBox3;
     }
 }

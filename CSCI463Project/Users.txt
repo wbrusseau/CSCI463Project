@@ -1,2 +1,2 @@
-Doctor|FlintBrunt|Password456
-Patient|JaneDoe|Password123
+Doctor|DT1204|Password456
+Patient|PT1001|Password123

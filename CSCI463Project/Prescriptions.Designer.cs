@@ -21,26 +21,22 @@
         }
         private void InitializeComponent()
         {
-            string userRole = Session.UserRole;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Prescriptions));
             LogoutButton = new Button();
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
             MessagesButton = new Button();
-            /*
-            if (userRole == "Patient")
-                TreatmentPlanButton = new Button();
-            */
             PrescriptionsButton = new Button();
+            TreatmentPlanButton = new Button();
             AppointmentsButton = new Button();
             AlertsButton = new Button();
             HomeButton = new Button();
             panel3 = new Panel();
             panel4 = new Panel();
             panel5 = new Panel();
-            panel6 = new Panel();
             textBox1 = new TextBox();
+            textBox2 = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -86,8 +82,8 @@
             panel2.BackColor = Color.Gray;
             panel2.BackgroundImageLayout = ImageLayout.Zoom;
             panel2.Controls.Add(MessagesButton);
-            panel2.Controls.Add(TreatmentPlanButton);
             panel2.Controls.Add(PrescriptionsButton);
+            panel2.Controls.Add(TreatmentPlanButton);
             panel2.Controls.Add(AppointmentsButton);
             panel2.Controls.Add(AlertsButton);
             panel2.Controls.Add(HomeButton);
@@ -109,25 +105,20 @@
             MessagesButton.TextAlign = ContentAlignment.MiddleLeft;
             MessagesButton.UseVisualStyleBackColor = false;
             MessagesButton.Click += MessagesButton_Click;
-            // 
+            //
             // TreatmentPlanButton
-            // 
-            /*
-            if (userRole == "Patient")
-            {
-                TreatmentPlanButton.BackColor = Color.White;
-                TreatmentPlanButton.FlatAppearance.BorderSize = 0;
-                TreatmentPlanButton.FlatStyle = FlatStyle.Popup;
-                TreatmentPlanButton.Location = new Point(0, 242);
-                TreatmentPlanButton.Name = "TreatmentPlanButton";
-                TreatmentPlanButton.Size = new Size(164, 54);
-                TreatmentPlanButton.TabIndex = 4;
-                TreatmentPlanButton.Text = "Treatment Plan";
-                TreatmentPlanButton.TextAlign = ContentAlignment.MiddleLeft;
-                TreatmentPlanButton.UseVisualStyleBackColor = false;
-                TreatmentPlanButton.Click += TreatmentPlanButton_Click;
-            }
-            */
+            //
+            TreatmentPlanButton.BackColor = Color.White;
+            TreatmentPlanButton.FlatAppearance.BorderSize = 0;
+            TreatmentPlanButton.FlatStyle = FlatStyle.Popup;
+            TreatmentPlanButton.Location = new Point(0, 242);
+            TreatmentPlanButton.Name = "TreatmentPlanButton";
+            TreatmentPlanButton.Size = new Size(164, 54);
+            TreatmentPlanButton.TabIndex = 4;
+            TreatmentPlanButton.Text = "Treatment Plan";
+            TreatmentPlanButton.TextAlign = ContentAlignment.MiddleLeft;
+            TreatmentPlanButton.UseVisualStyleBackColor = false;
+            TreatmentPlanButton.Click += TreatmentPlanButton_Click;
             // 
             // PrescriptionsButton
             // 
@@ -209,14 +200,6 @@
             panel5.Size = new Size(19, 302);
             panel5.TabIndex = 0;
             // 
-            // panel6
-            // 
-            panel6.BackColor = Color.Black;
-            panel6.Location = new Point(452, 129);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(10, 300);
-            panel6.TabIndex = 4;
-            // 
             // textBox1
             // 
             textBox1.BackColor = Color.White;
@@ -228,7 +211,19 @@
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(569, 54);
             textBox1.TabIndex = 5;
-            textBox1.Text = Session.Username + "'s Prescriptions";
+            // 
+            // textBox2
+            // 
+            textBox2.BackColor = Color.White;
+            textBox2.Font = new Font("Segoe UI", 9F);
+            textBox2.Location = new Point(198, 137);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.PlaceholderText = "No Current Prescriptions";
+            textBox2.ReadOnly = true;
+            textBox2.ScrollBars = ScrollBars.Vertical;
+            textBox2.Size = new Size(568, 286);
+            textBox2.TabIndex = 6;
             // 
             // Prescriptions
             // 
@@ -236,8 +231,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(796, 438);
+            Controls.Add(textBox2);
             Controls.Add(textBox1);
-            Controls.Add(panel6);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -267,7 +262,6 @@
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
-        private Panel panel6;
         private TextBox textBox1;
         #region Windows Form Designer generated code
 
@@ -277,5 +271,7 @@
         /// </summary>
 
         #endregion
+
+        private TextBox textBox2;
     }
 }
