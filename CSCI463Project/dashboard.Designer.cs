@@ -44,8 +44,8 @@
             panel5 = new Panel();
             panel6 = new Panel();
             textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            AlertsList = new TextBox();
+            TreatmentPlans = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -128,9 +128,9 @@
             Prescriptions.TextAlign = ContentAlignment.MiddleLeft;
             Prescriptions.UseVisualStyleBackColor = false;
             Prescriptions.Click += Prescriptions_Click;
-            //
+            // 
             // TreatmentPlan
-            //
+            // 
             TreatmentPlan.BackColor = Color.White;
             TreatmentPlan.FlatAppearance.BorderSize = 0;
             TreatmentPlan.FlatStyle = FlatStyle.Popup;
@@ -231,24 +231,25 @@
             textBox1.Size = new Size(569, 54);
             textBox1.TabIndex = 5;
             // 
-            // textBox2
+            // AlertsList
             // 
-            textBox2.Location = new Point(476, 135);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "No Appointments this week";
-            textBox2.Size = new Size(245, 281);
-            textBox2.TabIndex = 6;
+            AlertsList.Location = new Point(476, 135);
+            AlertsList.Multiline = true;
+            AlertsList.Name = "AlertsList";
+            AlertsList.PlaceholderText = "No Appointments this week";
+            AlertsList.ReadOnly = true;
+            AlertsList.Size = new Size(245, 281);
+            AlertsList.TabIndex = 6;
             // 
-            // textBox3
+            // TreatmentPlans
             // 
-            textBox3.Location = new Point(200, 139);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "No current Patient alerts";
-            textBox3.Size = new Size(243, 282);
-            textBox3.TabIndex = 7;
-            textBox3.Text = Session.AlertCount() + " Current Patient Alerts";
+            TreatmentPlans.Location = new Point(200, 139);
+            TreatmentPlans.Multiline = true;
+            TreatmentPlans.Name = "TreatmentPlans";
+            TreatmentPlans.PlaceholderText = "No current Patient alerts";
+            TreatmentPlans.ReadOnly = true;
+            TreatmentPlans.Size = new Size(243, 282);
+            TreatmentPlans.TabIndex = 7;
             // 
             // Dashboard
             // 
@@ -256,8 +257,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(796, 438);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
+            Controls.Add(TreatmentPlans);
+            Controls.Add(AlertsList);
             Controls.Add(textBox1);
             Controls.Add(panel6);
             Controls.Add(panel3);
@@ -292,7 +293,7 @@
         private Panel panel5;
         private Panel panel6;
         private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox AlertsList;
+        private TextBox TreatmentPlans;
     }
 }

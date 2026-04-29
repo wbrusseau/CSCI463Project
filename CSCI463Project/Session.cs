@@ -23,80 +23,120 @@ namespace CSCI463Project
          * 
          * 
          */
-        public static string[] AlertList()
+        private static string GetPath(string filename)
         {
-            string[] alrt = new string[100];
-            string file = Session.Username + "_alerts.txt";
-            int i = 0;
+            return Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                "Information",
+                filename
+            );
+        }
+
+        public static List<string> GetDoctorPatients()
+        {
+            List<string> patients = new List<string>();
+
+            string file = GetPath(Session.Username + "_patients.txt");
+
+            if (!File.Exists(file))
+                return patients;
+
             foreach (string line in File.ReadLines(file))
             {
-                //File is formatted as "AlertID|AlertMessage|Date"
                 string[] parts = line.Split('|');
-                alrt[i] = parts[1];
-                i++;
+                patients.Add(parts[0]); // PT1001
+            }
+
+            return patients;
+        }
+
+        public static List<string[]> GetPatientAlertData(string patientID)
+        {
+            List<string[]> alerts = new List<string[]>();
+
+            string file = GetPath(patientID + "_alerts.txt");
+
+            if (!File.Exists(file))
+                return alerts;
+
+            foreach (string line in File.ReadLines(file))
+            {
+                string[] parts = line.Split('|');
+                if (parts.Length < 3)
+                {
+                    continue;
+                } // Skip malformed lines
+                alerts.Add(parts);
+            }
+
+            return alerts;
+        }
+
+        public static List<string> AlertList()
+        {
+            List<string> alrt = new List<string>();
+
+            foreach (var parts in GetPatientAlertData(Username))
+            {
+                //File is formatted as "AlertID|AlertMessage|Date"
+                alrt.Add(parts[1]);
             }
             return alrt;
         }
 
-        public static string getAlertDate(string alertID)
+        public static string GetAlertMessage(string patientID, string alertID)
         {
-            string alrt = "";
-            string file = Session.Username + "_alerts.txt";
-            foreach (string line in File.ReadLines(file))
+            foreach(var parts in GetPatientAlertData(patientID))
             {
-                //File is formatted as "AlertID|AlertMessage|Date"
-                string[] parts = line.Split('|');
                 if (parts[0] == alertID)
                 {
-                    alrt = parts[2];
+                    return parts[1]; // AlertMessage
                 }
             }
-            return alrt;
+            return "";
         }
-
-        public static string getAlertMessage(string alertID)
+        public static string GetAlertDate(string patientID, string alertID)
         {
-            string alrt = "";
-            string file = Session.Username + "_alerts.txt";
-            foreach (string line in File.ReadLines(file))
+            foreach (var parts in GetPatientAlertData(patientID))
             {
-                //File is formatted as "AlertID|AlertMessage|Date"
-                string[] parts = line.Split('|');
                 if (parts[0] == alertID)
                 {
-                    alrt = parts[1];
+                    return parts[2]; // AlertDate
                 }
             }
-            return alrt;
-        }
-        public static int AlertCount()
-        {
-            string file = Session.Username + "_alerts.txt";
-            int count = 0;
-            foreach (string line in File.ReadLines(file))
-            {
-                count++;
-            }
-            return count;
+            return "";
         }
 
-        public static string[] getDoctorsAlertsList()
+        public static int GetPatientsAlertCount(string patientID)
         {
-            string[] alrt = new string[100];
-            string file = Session.Username + "_patients.txt";
-            int i = 0;
-            foreach (string line in File.ReadLines(file))
+            return GetPatientAlertData(patientID).Count;
+        }
+
+        public static List<string> getDoctorsAlertsList()
+        {
+            List<string> allAlerts = new List<string>();
+            
+            foreach(string patient in GetDoctorPatients())
             {
-                string patID = line.Split('|')[0];
-                foreach (string line2 in File.ReadLines(patID + "_alerts.txt"))
+                foreach (var alert in GetPatientAlertData(patient))
                 {
                     //File is formatted as "AlertID|AlertMessage|Date"
-                    string[] parts = line2.Split('|');
-                    alrt[i] = parts[1];
-                    i++;
+                    allAlerts.Add(alert[1]);
                 }
             }
-            return alrt;
+            return allAlerts;
+        }
+
+        public static int GetDoctorsAlertsCount()
+        {
+            int count = 0;
+
+            foreach (string patient in GetDoctorPatients())
+            {
+                count += GetPatientsAlertCount(patient);
+            }
+
+            return count;
         }
 
 
@@ -108,51 +148,78 @@ namespace CSCI463Project
          * 
          * 
          */
-        public static string[] PrescriptionsList()
+        public static List<string> PrescriptionsList()
         {
-            string[] prcn = new string[100];
-            string file = Session.Username + "_prescriptions.txt";
-            int i = 0;
+            List<string> prcn = new List<string>();
+            string file = GetPath(Username + "_prescriptions.txt");
+
+            if (!File.Exists(file))
+            {
+                return prcn;
+            }
+
             foreach (string line in File.ReadLines(file))
             {
-                //File is formatted as "PrescriptionName|Dosage|Frequency"
                 string[] parts = line.Split('|');
-                prcn[i] = parts[0];
-                i++;
+             
+                if (parts.Length < 1)
+                {
+                    continue;
+                } // Skip malformed lines
+                prcn.Add(parts[0]);
             }
             return prcn;
         }
 
-        public static string getPrescriptionDosage(string PrescriptionName)
+        public static string GetPrescriptionDosage(string PrescriptionName)
         {
-            string alrt = "";
-            string file = Session.Username + "_prescriptions.txt";
+            string file = GetPath(Username + "_prescriptions.txt");
+            if (!File.Exists(file))
+            {
+                return "";
+            }
             foreach (string line in File.ReadLines(file))
             {
                 //File is formatted as "PrescriptionName|Dosage|Frequency"
                 string[] parts = line.Split('|');
+
+                if (parts.Length < 2)
+                {
+                    continue;
+                }
+
                 if (parts[0] == PrescriptionName)
                 {
-                    alrt = parts[1];
+                    return parts[1];
                 }
             }
-            return alrt;
+            return "";
         }
 
-        public static string getPrescriptionFrequency(string PrescriptionName)
+        public static string GetPrescriptionFrequency(string PrescriptionName)
         {
-            string alrt = "";
-            string file = Session.Username + "_prescriptions.txt";
+            string file = GetPath(Session.Username + "_prescriptions.txt");
+
+            if (!File.Exists(file))
+            {
+                return "";
+            }
+
             foreach (string line in File.ReadLines(file))
             {
                 //File is formatted as "PrescriptionName|Dosage|Frequency"
                 string[] parts = line.Split('|');
+                if (parts.Length < 3)
+                {
+                    continue;
+                }
+
                 if (parts[0] == PrescriptionName)
                 {
-                    alrt = parts[2];
+                    return parts[2];
                 }
             }
-            return alrt;
+            return "";
         }
 
         /**
@@ -160,52 +227,80 @@ namespace CSCI463Project
          * 
          * 
          */
-        public static string[] TreatmentPlanList()
+        public static List<string> GetTreatmentPlanList()
         {
-            string[] trtmnt = new string[100];
-            string file = Session.Username + "_treatmentplan.txt";
-            int i = 0;
+            List<string> trtmnt = new List<string>();
+            string file = GetPath(Username + "_treatmentplan.txt");
+            if (!File.Exists(file))
+            {
+                return trtmnt;
+            }
+
             foreach (string line in File.ReadLines(file))
             {
                 //File is formatted as "TreatmentName|Description"
                 string[] parts = line.Split('|');
-                trtmnt[i] = parts[0];
-                i++;
+                if (parts.Length < 1)
+                {
+                    continue;
+                }
+                trtmnt.Add(parts[0]);
             }
+
             return trtmnt;
         }
 
-        public static string getTreatmentPlanDescription(string TreatmentName)
+        public static string GetTreatmentPlanDescription(string TreatmentName)
         {
-            string alrt = "";
-            string file = Session.Username + "_treatmentplan.txt";
+            string file = GetPath(Session.Username + "_treatmentplan.txt");
+            if (!File.Exists(file))
+            {
+                return "";
+            }
             foreach (string line in File.ReadLines(file))
             {
                 //File is formatted as "TreatmentName|Description"
                 string[] parts = line.Split('|');
+                if (parts.Length < 2)
+                {
+                    continue;
+                }
+
                 if (parts[0] == TreatmentName)
                 {
-                    alrt = parts[1];
+                    return parts[1];
                 }
             }
-            return alrt;
+            return "";
         }
 
-        public static string getDoctorsTreatmentplanList()
+        public static List<string> GetDoctorsTreatmentPlanList()
         {
-            string trtmnt = "";
-            string file = Session.Username + "_patients.txt";
-            foreach (string line in File.ReadLines(file))
+            List<string> trtmnt = new List<string>();
+            foreach (string patient in GetDoctorPatients())
             {
-                string patID = line.Split('|')[0];
-                foreach (string line2 in File.ReadLines(patID + "_treatmentplan.txt"))
+                string file = GetPath(patient + "_treatmentplan.txt");
+                if (!File.Exists(file))
+                {
+                    continue;
+                }
+
+                foreach (string line in File.ReadLines(file))
                 {
                     //File is formatted as "TreatmentName|Description"
-                    string[] parts = line2.Split('|');
-                    trtmnt += parts[0] + "\n";
+                    string[] parts = line.Split('|');
+                    if (parts.Length < 1)
+                    {
+                        continue;
+                    }
+                    trtmnt.Add(parts[0]);
                 }
             }
             return trtmnt;
+        }
+
+        public static int GetDoctorsTreatmentPlanCount() { 
+            return GetDoctorsTreatmentPlanList().Count;
         }
     }
 }

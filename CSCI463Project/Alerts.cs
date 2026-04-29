@@ -67,14 +67,5 @@ namespace CSCI463Project
             this.Close();
         }
 
-        public string AlertList()
-        {
-            string alerts = "";
-            foreach (var alert in Session.AlertList(""))
-            {
-                
-            }
-            return alerts;
-        }
     }
 }
