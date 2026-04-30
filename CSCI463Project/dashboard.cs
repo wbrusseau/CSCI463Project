@@ -19,8 +19,18 @@ namespace CSCI463Project
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            AlertsList.Text = Session.GetDoctorsAlertsCount().ToString() + " Current Patient Alerts";
-            TreatmentPlans.Text = Session.getDoctorsTreatmentplanList().Length.ToString() + " Current Treatment Plans";
+            textBox1.Text = "Welcome, " + Session.FullName + "!";
+            if (Session.UserRole == "Patient")
+            {
+                AlertsList.Text = Session.GetPatientsAlertCount(Session.Username).ToString() + " Current Alerts";
+                TreatmentPlans.Text = Session.GetTreatmentPlanList().Count.ToString() + " Current Treatment Plans";
+            }
+            else
+            {
+                AlertsList.Text = Session.GetDoctorsAlertsCount().ToString() + " Current Patient Alerts";
+                TreatmentPlans.Text = Session.GetDoctorsTreatmentPlanCount().ToString() + " Current Treatment Plans";
+            }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

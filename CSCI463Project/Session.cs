@@ -11,6 +11,7 @@ namespace CSCI463Project
     {
         public static string UserRole { get; set; }
         public static string Username { get; set; }
+        public static string FullName { get; set; }
 
 
         /**
@@ -32,6 +33,8 @@ namespace CSCI463Project
             );
         }
 
+
+        //Get Doctors Patients
         public static List<string> GetDoctorPatients()
         {
             List<string> patients = new List<string>();
@@ -50,6 +53,8 @@ namespace CSCI463Project
             return patients;
         }
 
+
+        //Get Patient Alert Data
         public static List<string[]> GetPatientAlertData(string patientID)
         {
             List<string[]> alerts = new List<string[]>();
@@ -72,6 +77,7 @@ namespace CSCI463Project
             return alerts;
         }
 
+        // Get Patient Alert List (ID of alert)
         public static List<string> AlertList()
         {
             List<string> alrt = new List<string>();
@@ -79,11 +85,12 @@ namespace CSCI463Project
             foreach (var parts in GetPatientAlertData(Username))
             {
                 //File is formatted as "AlertID|AlertMessage|Date"
-                alrt.Add(parts[1]);
+                alrt.Add(parts[0]);
             }
             return alrt;
         }
 
+        //Display alert messages
         public static string GetAlertMessage(string patientID, string alertID)
         {
             foreach(var parts in GetPatientAlertData(patientID))
@@ -95,6 +102,8 @@ namespace CSCI463Project
             }
             return "";
         }
+
+        //Display alert date
         public static string GetAlertDate(string patientID, string alertID)
         {
             foreach (var parts in GetPatientAlertData(patientID))
@@ -107,11 +116,13 @@ namespace CSCI463Project
             return "";
         }
 
+        //Find number of alerts for patient
         public static int GetPatientsAlertCount(string patientID)
         {
             return GetPatientAlertData(patientID).Count;
         }
 
+        //Find number of alerts for doctor
         public static List<string> getDoctorsAlertsList()
         {
             List<string> allAlerts = new List<string>();
@@ -121,18 +132,20 @@ namespace CSCI463Project
                 foreach (var alert in GetPatientAlertData(patient))
                 {
                     //File is formatted as "AlertID|AlertMessage|Date"
-                    allAlerts.Add(alert[1]);
+                    allAlerts.Add(alert[0]);
                 }
             }
             return allAlerts;
         }
 
+        //Find number of alerts for doctor
         public static int GetDoctorsAlertsCount()
         {
             int count = 0;
 
             foreach (string patient in GetDoctorPatients())
             {
+                string testFile = GetPath(patient + "_alerts.txt");
                 count += GetPatientsAlertCount(patient);
             }
 
@@ -148,10 +161,12 @@ namespace CSCI463Project
          * 
          * 
          */
-        public static List<string> PrescriptionsList()
+
+        // Get Prescription List
+        public static List<string[]> GetPatientsPrescriptionsList(string patientID)
         {
-            List<string> prcn = new List<string>();
-            string file = GetPath(Username + "_prescriptions.txt");
+            List<string[]> prcn = new List<string[]>();
+            string file = GetPath(patientID + "_prescriptions.txt");
 
             if (!File.Exists(file))
             {
@@ -160,66 +175,9 @@ namespace CSCI463Project
 
             foreach (string line in File.ReadLines(file))
             {
-                string[] parts = line.Split('|');
-             
-                if (parts.Length < 1)
-                {
-                    continue;
-                } // Skip malformed lines
-                prcn.Add(parts[0]);
+                prcn.Add(line.Split('|'));
             }
             return prcn;
-        }
-
-        public static string GetPrescriptionDosage(string PrescriptionName)
-        {
-            string file = GetPath(Username + "_prescriptions.txt");
-            if (!File.Exists(file))
-            {
-                return "";
-            }
-            foreach (string line in File.ReadLines(file))
-            {
-                //File is formatted as "PrescriptionName|Dosage|Frequency"
-                string[] parts = line.Split('|');
-
-                if (parts.Length < 2)
-                {
-                    continue;
-                }
-
-                if (parts[0] == PrescriptionName)
-                {
-                    return parts[1];
-                }
-            }
-            return "";
-        }
-
-        public static string GetPrescriptionFrequency(string PrescriptionName)
-        {
-            string file = GetPath(Session.Username + "_prescriptions.txt");
-
-            if (!File.Exists(file))
-            {
-                return "";
-            }
-
-            foreach (string line in File.ReadLines(file))
-            {
-                //File is formatted as "PrescriptionName|Dosage|Frequency"
-                string[] parts = line.Split('|');
-                if (parts.Length < 3)
-                {
-                    continue;
-                }
-
-                if (parts[0] == PrescriptionName)
-                {
-                    return parts[2];
-                }
-            }
-            return "";
         }
 
         /**
@@ -227,10 +185,10 @@ namespace CSCI463Project
          * 
          * 
          */
-        public static List<string> GetTreatmentPlanList()
+        public static List<string[]> GetTreatmentPlanList(string patientID)
         {
-            List<string> trtmnt = new List<string>();
-            string file = GetPath(Username + "_treatmentplan.txt");
+            List<string[]> trtmnt = new List<string[]>();
+            string file = GetPath(patientID + "_treatmentplan.txt");
             if (!File.Exists(file))
             {
                 return trtmnt;
@@ -244,34 +202,10 @@ namespace CSCI463Project
                 {
                     continue;
                 }
-                trtmnt.Add(parts[0]);
+                trtmnt.Add(parts);
             }
 
             return trtmnt;
-        }
-
-        public static string GetTreatmentPlanDescription(string TreatmentName)
-        {
-            string file = GetPath(Session.Username + "_treatmentplan.txt");
-            if (!File.Exists(file))
-            {
-                return "";
-            }
-            foreach (string line in File.ReadLines(file))
-            {
-                //File is formatted as "TreatmentName|Description"
-                string[] parts = line.Split('|');
-                if (parts.Length < 2)
-                {
-                    continue;
-                }
-
-                if (parts[0] == TreatmentName)
-                {
-                    return parts[1];
-                }
-            }
-            return "";
         }
 
         public static List<string> GetDoctorsTreatmentPlanList()
@@ -301,6 +235,33 @@ namespace CSCI463Project
 
         public static int GetDoctorsTreatmentPlanCount() { 
             return GetDoctorsTreatmentPlanList().Count;
+        }
+
+        /**
+         * 
+         * Messages Section:
+         *
+         */
+
+        public static List<string[]> GetMessages()
+        {
+            List<string[]> messages = new List<string[]>();
+            string file = GetPath(Username + "_messages.txt");
+            if (!File.Exists(file))
+            {
+                return messages;
+            }
+            foreach (string line in File.ReadLines(file))
+            {
+                //File is formatted as "Sender|Message|Date"
+                string[] parts = line.Split('|');
+                if (parts.Length < 3)
+                {
+                    continue;
+                }
+                messages.Add(parts);
+            }
+            return messages;
         }
     }
 }

@@ -21,7 +21,6 @@
         }
         private void InitializeComponent()
         {
-            string userRole = Session.UserRole;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Messages));
             LogoutButton = new Button();
             panel1 = new Panel();
@@ -36,8 +35,9 @@
             panel3 = new Panel();
             panel4 = new Panel();
             panel5 = new Panel();
-            panel6 = new Panel();
             textBox1 = new TextBox();
+            MessageText = new TextBox();
+            SendMess = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -201,14 +201,6 @@
             panel5.Size = new Size(19, 302);
             panel5.TabIndex = 0;
             // 
-            // panel6
-            // 
-            panel6.BackColor = Color.Black;
-            panel6.Location = new Point(452, 129);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(10, 300);
-            panel6.TabIndex = 4;
-            // 
             // textBox1
             // 
             textBox1.BackColor = Color.White;
@@ -220,7 +212,25 @@
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(569, 54);
             textBox1.TabIndex = 5;
-            textBox1.Text = Session.Username + "'s Messages";
+            // 
+            // MessageText
+            // 
+            MessageText.Location = new Point(200, 142);
+            MessageText.Multiline = true;
+            MessageText.Name = "MessageText";
+            MessageText.ReadOnly = true;
+            MessageText.Size = new Size(288, 271);
+            MessageText.TabIndex = 6;
+            // 
+            // SendMess
+            // 
+            SendMess.Location = new Point(532, 147);
+            SendMess.Name = "SendMess";
+            SendMess.Size = new Size(219, 48);
+            SendMess.TabIndex = 7;
+            SendMess.Text = "Send Message";
+            SendMess.UseVisualStyleBackColor = true;
+            SendMess.Click += button1_Click;
             // 
             // Messages
             // 
@@ -228,13 +238,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(796, 438);
+            Controls.Add(SendMess);
+            Controls.Add(MessageText);
             Controls.Add(textBox1);
-            Controls.Add(panel6);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Messages";
             Text = "Alerts";
+            Load += Messages_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -259,8 +271,9 @@
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
-        private Panel panel6;
         private TextBox textBox1;
+        private TextBox MessageText;
+        private Button SendMess;
     }
         #region Windows Form Designer generated code
 

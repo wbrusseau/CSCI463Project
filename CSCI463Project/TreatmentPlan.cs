@@ -79,6 +79,34 @@ namespace CSCI463Project
             messageForm.ShowDialog();
             this.Close();
         }
+
+        private void TreatmentPlan_Load(object sender, EventArgs e)
+        {
+            if (Session.UserRole == "Patient")
+            {
+                textBox1.Text = Session.FullName + "'s Treatment Plan";
+                List<string[]> treatmentplanList = Session.GetTreatmentPlanList(Session.Username);
+                for (int i = 0; i < treatmentplanList.Count; i++)
+                {
+                    string treatmentName = treatmentplanList[i][0];
+                    string treatmentDescr = treatmentplanList[i][1];
+                    TreatmentPlanBox.AppendText($"{treatmentName} : {treatmentDescr}");
+                }
+            }
+            else
+            {
+                textBox1.Text = Session.FullName + "'s Patients' Treatment Plans";
+                List<string> patients = Session.GetDoctorPatients();
+                for (int i = 0; i < patients.Count; i++)
+                {
+                    string patientID = patients[i];
+                    List<string[]> trmnt = Session.GetTreatmentPlanList(patientID);
+                    string trmntName = trmnt[i][0];
+                    string trmntDescr = trmnt[i][1];
+                    TreatmentPlanBox.AppendText($"{patientID} - {trmntName} : {trmntDescr}");
+                }
+            }
+        }
     }
 }
 

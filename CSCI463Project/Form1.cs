@@ -17,8 +17,10 @@ namespace CSCI463Project
                 string userRole = parts[0];
                 string userName = parts[1];
                 string password = parts[2];
+                string fullName = parts[3];
                 Session.UserRole = userRole;
                 Session.Username = userName;
+                Session.FullName = fullName;
 
                 if (UserIdText.Text == userName)
                 {

@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace CSCI463Project
+﻿namespace CSCI463Project
 {
     public partial class Prescriptions : Form
     {
@@ -63,6 +53,47 @@ namespace CSCI463Project
             this.Hide();
             lgPage.ShowDialog();
             this.Close();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Prescriptions_Load(object sender, EventArgs e)
+        {
+            if (Session.UserRole == "Patient")
+            {
+                textBox1.Text = Session.FullName + "'s Prescriptions";
+                List<string[]> preslist = Session.GetPatientsPrescriptionsList(Session.Username);
+                for (int i = 0; i < preslist.Count; i++)
+                {
+                    string presInfo = $"Prescription {i + 1}: {preslist[i][0]} - {preslist[i][1]} - {preslist[i][2]}";
+                    PrescriptionBox.AppendText(presInfo + Environment.NewLine);
+                }
+
+            }
+            else
+            {
+                textBox1.Text = Session.FullName + "'s Patients' Prescriptions";
+                List<string> patients = Session.GetDoctorPatients();
+                for (int i = 0; i < patients.Count; i++)
+                {
+                    List<string[]> preslist = Session.GetPatientsPrescriptionsList(patients[i]);
+                    for (int j = 0; j < preslist.Count; j++)
+                    {
+                        if (string.IsNullOrEmpty(preslist[j][0]) && string.IsNullOrEmpty(preslist[j][1]) && string.IsNullOrEmpty(preslist[j][2]))
+                        {
+                            continue; // Skip empty prescriptions
+                        }
+                        string presInfo = $"Patient: {patients[i]} - Prescription {j + 1}: {preslist[j][0]} - {preslist[j][1]} - {preslist[j][2]}";
+                        PrescriptionBox.AppendText(presInfo + Environment.NewLine);
+                    }
+                }
+
+            }
+
+
         }
     }
 }

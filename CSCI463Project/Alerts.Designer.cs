@@ -21,7 +21,6 @@
         }
         private void InitializeComponent()
         {
-            string UserRole = Session.UserRole;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Alerts));
             LogoutButton = new Button();
             panel1 = new Panel();
@@ -36,8 +35,8 @@
             panel3 = new Panel();
             panel4 = new Panel();
             panel5 = new Panel();
-            panel6 = new Panel();
             textBox1 = new TextBox();
+            AlertsBox = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -108,7 +107,7 @@
             Messages.Click += Messages_Click;
             // 
             // TreatmentPlan
-            //
+            // 
             TreatmentPlan.BackColor = Color.White;
             TreatmentPlan.FlatAppearance.BorderSize = 0;
             TreatmentPlan.FlatStyle = FlatStyle.Popup;
@@ -120,7 +119,6 @@
             TreatmentPlan.TextAlign = ContentAlignment.MiddleLeft;
             TreatmentPlan.UseVisualStyleBackColor = false;
             TreatmentPlan.Click += TreatmentPlan_Click;
-
             // 
             // Prescriptions
             // 
@@ -202,14 +200,6 @@
             panel5.Size = new Size(19, 302);
             panel5.TabIndex = 0;
             // 
-            // panel6
-            // 
-            panel6.BackColor = Color.Black;
-            panel6.Location = new Point(452, 129);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(10, 300);
-            panel6.TabIndex = 4;
-            // 
             // textBox1
             // 
             textBox1.BackColor = Color.White;
@@ -218,10 +208,19 @@
             textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(197, 60);
             textBox1.Name = "textBox1";
-            textBox1.Text = Session.Username + "'s Alerts";
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(569, 54);
             textBox1.TabIndex = 5;
+            // 
+            // AlertsBox
+            // 
+            AlertsBox.Enabled = false;
+            AlertsBox.Location = new Point(195, 141);
+            AlertsBox.Multiline = true;
+            AlertsBox.Name = "AlertsBox";
+            AlertsBox.ReadOnly = true;
+            AlertsBox.Size = new Size(568, 282);
+            AlertsBox.TabIndex = 6;
             // 
             // Alerts
             // 
@@ -229,13 +228,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(796, 438);
+            Controls.Add(AlertsBox);
             Controls.Add(textBox1);
-            Controls.Add(panel6);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Alerts";
             Text = "Alerts";
+            Load += Alerts_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -260,7 +260,7 @@
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
-        private Panel panel6;
         private TextBox textBox1;
+        private TextBox AlertsBox;
     }
 }

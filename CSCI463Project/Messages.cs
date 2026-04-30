@@ -74,5 +74,23 @@ namespace CSCI463Project
             lgPage.ShowDialog();
             this.Close();
         }
+
+        private void Messages_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = Session.FullName + "'s Messages";
+            List<string[]> messages = Session.GetMessages();
+            foreach (string[] message in messages)
+            {
+                string messSender = message[0];
+                string content = message[1];
+                string date = message[2];
+                MessageText.AppendText($"From: {messSender} - {date}\n{content}\n");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -67,5 +67,42 @@ namespace CSCI463Project
             this.Close();
         }
 
+        private void Alerts_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = Session.FullName + "'s Alerts";
+            if (Session.UserRole == "Patient")
+            {
+                List<string[]> alerts = Session.GetPatientAlertData(Session.Username);
+                
+                for (int i = 0; i < alerts.Count; i++)
+                {
+                    string alertID = alerts[i][0];
+                    string alertMessage = Session.GetAlertMessage(Session.Username, alertID);
+                    string alertDate = Session.GetAlertDate(Session.Username, alertID);
+                    string displayText = $"{alertDate}: {alertMessage}";
+                    AlertsBox.AppendText(displayText + Environment.NewLine);
+                }
+            }
+            else
+            {
+                List<string> doctorAlerts = Session.getDoctorsAlertsList();
+                List<string> doctorPatients = Session.GetDoctorPatients();
+                for (int i = 0; i < doctorPatients.Count; i++)
+                {
+                    string patientID = doctorPatients[i];
+                    for (int j = 0; j < doctorAlerts.Count; j++)
+                    {
+                        if (Session.GetPatientsAlertCount(patientID) == 0)
+                        {
+                            continue; // Skip patients with no alerts
+                        }
+                        string alertID = doctorAlerts[j];
+                        string alertMessage = Session.GetAlertMessage(patientID, alertID);
+                        string alertDate = Session.GetAlertDate(patientID, alertID);
+                        AlertsBox.AppendText($"{patientID} | {alertID}: {alertMessage}" + Environment.NewLine);
+                    }
+                }
+            }
+        }
     }
 }

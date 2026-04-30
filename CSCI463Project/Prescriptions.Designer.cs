@@ -36,7 +36,7 @@
             panel4 = new Panel();
             panel5 = new Panel();
             textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            PrescriptionBox = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -105,20 +105,6 @@
             MessagesButton.TextAlign = ContentAlignment.MiddleLeft;
             MessagesButton.UseVisualStyleBackColor = false;
             MessagesButton.Click += MessagesButton_Click;
-            //
-            // TreatmentPlanButton
-            //
-            TreatmentPlanButton.BackColor = Color.White;
-            TreatmentPlanButton.FlatAppearance.BorderSize = 0;
-            TreatmentPlanButton.FlatStyle = FlatStyle.Popup;
-            TreatmentPlanButton.Location = new Point(0, 242);
-            TreatmentPlanButton.Name = "TreatmentPlanButton";
-            TreatmentPlanButton.Size = new Size(164, 54);
-            TreatmentPlanButton.TabIndex = 4;
-            TreatmentPlanButton.Text = "Treatment Plan";
-            TreatmentPlanButton.TextAlign = ContentAlignment.MiddleLeft;
-            TreatmentPlanButton.UseVisualStyleBackColor = false;
-            TreatmentPlanButton.Click += TreatmentPlanButton_Click;
             // 
             // PrescriptionsButton
             // 
@@ -133,6 +119,20 @@
             PrescriptionsButton.Text = "My Prescriptions";
             PrescriptionsButton.TextAlign = ContentAlignment.MiddleLeft;
             PrescriptionsButton.UseVisualStyleBackColor = false;
+            // 
+            // TreatmentPlanButton
+            // 
+            TreatmentPlanButton.BackColor = Color.White;
+            TreatmentPlanButton.FlatAppearance.BorderSize = 0;
+            TreatmentPlanButton.FlatStyle = FlatStyle.Popup;
+            TreatmentPlanButton.Location = new Point(0, 242);
+            TreatmentPlanButton.Name = "TreatmentPlanButton";
+            TreatmentPlanButton.Size = new Size(164, 54);
+            TreatmentPlanButton.TabIndex = 4;
+            TreatmentPlanButton.Text = "Treatment Plan";
+            TreatmentPlanButton.TextAlign = ContentAlignment.MiddleLeft;
+            TreatmentPlanButton.UseVisualStyleBackColor = false;
+            TreatmentPlanButton.Click += TreatmentPlanButton_Click;
             // 
             // AppointmentsButton
             // 
@@ -212,18 +212,19 @@
             textBox1.Size = new Size(569, 54);
             textBox1.TabIndex = 5;
             // 
-            // textBox2
+            // PrescriptionBox
             // 
-            textBox2.BackColor = Color.White;
-            textBox2.Font = new Font("Segoe UI", 9F);
-            textBox2.Location = new Point(198, 137);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "No Current Prescriptions";
-            textBox2.ReadOnly = true;
-            textBox2.ScrollBars = ScrollBars.Vertical;
-            textBox2.Size = new Size(568, 286);
-            textBox2.TabIndex = 6;
+            PrescriptionBox.BackColor = Color.White;
+            PrescriptionBox.Font = new Font("Segoe UI", 9F);
+            PrescriptionBox.Location = new Point(198, 137);
+            PrescriptionBox.Multiline = true;
+            PrescriptionBox.Name = "PrescriptionBox";
+            PrescriptionBox.PlaceholderText = "No Current Prescriptions";
+            PrescriptionBox.ReadOnly = true;
+            PrescriptionBox.ScrollBars = ScrollBars.Vertical;
+            PrescriptionBox.Size = new Size(568, 286);
+            PrescriptionBox.TabIndex = 6;
+            PrescriptionBox.TextChanged += textBox2_TextChanged;
             // 
             // Prescriptions
             // 
@@ -231,13 +232,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(796, 438);
-            Controls.Add(textBox2);
+            Controls.Add(PrescriptionBox);
             Controls.Add(textBox1);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Prescriptions";
             Text = "Alerts";
+            Load += Prescriptions_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -272,6 +274,6 @@
 
         #endregion
 
-        private TextBox textBox2;
+        private TextBox PrescriptionBox;
     }
 }
