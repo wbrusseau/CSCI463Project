@@ -73,7 +73,7 @@ namespace CSCI463Project
             if (Session.UserRole == "Patient")
             {
                 List<string[]> alerts = Session.GetPatientAlertData(Session.Username);
-                
+
                 for (int i = 0; i < alerts.Count; i++)
                 {
                     string alertID = alerts[i][0];
@@ -85,24 +85,34 @@ namespace CSCI463Project
             }
             else
             {
-                List<string> doctorAlerts = Session.getDoctorsAlertsList();
                 List<string> doctorPatients = Session.GetDoctorPatients();
-                for (int i = 0; i < doctorPatients.Count; i++)
+
+                foreach (string patientID in doctorPatients)
                 {
-                    string patientID = doctorPatients[i];
-                    for (int j = 0; j < doctorAlerts.Count; j++)
+                    var alerts = Session.GetPatientAlertData(patientID);
+
+                    if (alerts.Count == 0)
+                        continue;
+
+                    foreach (var alert in alerts)
                     {
-                        if (Session.GetPatientsAlertCount(patientID) == 0)
-                        {
-                            continue; // Skip patients with no alerts
-                        }
-                        string alertID = doctorAlerts[j];
-                        string alertMessage = Session.GetAlertMessage(patientID, alertID);
-                        string alertDate = Session.GetAlertDate(patientID, alertID);
-                        AlertsBox.AppendText($"{patientID} | {alertID}: {alertMessage}" + Environment.NewLine);
+                        string alertType = alert[0];
+                        string alertMessage = alert[2];
+                        string alertDate = alert[1];
+
+                        AlertsBox.AppendText(
+                            Environment.NewLine + $"{patientID} | {alertType} | {alertDate} {alertMessage}"
+                            + Environment.NewLine
+                        );
                     }
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddAlert addAlertPage = new AddAlert();
+            addAlertPage.ShowDialog();
         }
     }
 }

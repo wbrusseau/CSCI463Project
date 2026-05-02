@@ -37,6 +37,8 @@
             panel5 = new Panel();
             textBox1 = new TextBox();
             AlertsBox = new TextBox();
+            button1 = new Button();
+            button2 = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -219,8 +221,22 @@
             AlertsBox.Multiline = true;
             AlertsBox.Name = "AlertsBox";
             AlertsBox.ReadOnly = true;
-            AlertsBox.Size = new Size(568, 282);
+            AlertsBox.Size = new Size(425, 282);
             AlertsBox.TabIndex = 6;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Green;
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.Font = new Font("Segoe UI", 12F);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(637, 144);
+            button1.Name = "button1";
+            button1.Size = new Size(148, 63);
+            button1.TabIndex = 7;
+            button1.Text = "Add Alert";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // Alerts
             // 
@@ -228,6 +244,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(796, 438);
+            Controls.Add(button1);
             Controls.Add(AlertsBox);
             Controls.Add(textBox1);
             Controls.Add(panel3);
@@ -262,5 +279,7 @@
         private Panel panel5;
         private TextBox textBox1;
         private TextBox AlertsBox;
+        private Button button1;
+        private Button button2;
     }
 }

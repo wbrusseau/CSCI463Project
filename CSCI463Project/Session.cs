@@ -188,20 +188,19 @@ namespace CSCI463Project
         public static List<string[]> GetTreatmentPlanList(string patientID)
         {
             List<string[]> trtmnt = new List<string[]>();
+
             string file = GetPath(patientID + "_treatmentplan.txt");
+
             if (!File.Exists(file))
-            {
                 return trtmnt;
-            }
 
             foreach (string line in File.ReadLines(file))
             {
-                //File is formatted as "TreatmentName|Description"
                 string[] parts = line.Split('|');
-                if (parts.Length < 1)
-                {
+
+                if (parts.Length < 2)
                     continue;
-                }
+
                 trtmnt.Add(parts);
             }
 
@@ -211,25 +210,25 @@ namespace CSCI463Project
         public static List<string> GetDoctorsTreatmentPlanList()
         {
             List<string> trtmnt = new List<string>();
+
             foreach (string patient in GetDoctorPatients())
             {
                 string file = GetPath(patient + "_treatmentplan.txt");
+
                 if (!File.Exists(file))
-                {
                     continue;
-                }
 
                 foreach (string line in File.ReadLines(file))
                 {
-                    //File is formatted as "TreatmentName|Description"
                     string[] parts = line.Split('|');
-                    if (parts.Length < 1)
-                    {
+
+                    if (parts.Length < 2)
                         continue;
-                    }
-                    trtmnt.Add(parts[0]);
+
+                    trtmnt.Add($"{patient} - {parts[0]} : {parts[1]}");
                 }
             }
+
             return trtmnt;
         }
 

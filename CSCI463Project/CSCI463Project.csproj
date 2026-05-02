@@ -11,7 +11,9 @@
   <ItemGroup>
     <None Remove="Information\DT1204_patients.txt" />
     <None Remove="Information\PT1001_alerts.txt" />
+    <None Remove="Information\PT1001_treatmentplan.txt" />
     <None Remove="Information\PT1002_alerts.txt" />
+    <None Remove="Information\PT1002_treatmentplan.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,7 +23,13 @@
     <Content Include="Information\PT1001_alerts.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Information\PT1001_treatmentplan.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Information\PT1002_alerts.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Information\PT1002_treatmentplan.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

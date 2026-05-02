@@ -12,6 +12,7 @@ namespace CSCI463Project
 {
     public partial class TreatmentPlan : Form
     {
+
         public TreatmentPlan()
         {
             InitializeComponent();
@@ -96,16 +97,33 @@ namespace CSCI463Project
             else
             {
                 textBox1.Text = Session.FullName + "'s Patients' Treatment Plans";
+
                 List<string> patients = Session.GetDoctorPatients();
-                for (int i = 0; i < patients.Count; i++)
+
+                foreach (string patientID in patients)
                 {
-                    string patientID = patients[i];
                     List<string[]> trmnt = Session.GetTreatmentPlanList(patientID);
-                    string trmntName = trmnt[i][0];
-                    string trmntDescr = trmnt[i][1];
-                    TreatmentPlanBox.AppendText($"{patientID} - {trmntName} : {trmntDescr}");
+
+                    if (trmnt.Count == 0)
+                        continue;
+
+                    foreach (string[] plan in trmnt)
+                    {
+                        string trmntName = plan[0];
+                        string trmntDescr = plan[1];
+
+                        TreatmentPlanBox.AppendText(
+                            $"{patientID} - {trmntName} : {trmntDescr}{Environment.NewLine}"
+                        );
+                    }
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CreateTreatmentPlan createForm = new CreateTreatmentPlan();
+            createForm.ShowDialog();
         }
     }
 }

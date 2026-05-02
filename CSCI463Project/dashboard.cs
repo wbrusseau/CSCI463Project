@@ -23,7 +23,7 @@ namespace CSCI463Project
             if (Session.UserRole == "Patient")
             {
                 AlertsList.Text = Session.GetPatientsAlertCount(Session.Username).ToString() + " Current Alerts";
-                TreatmentPlans.Text = Session.GetTreatmentPlanList().Count.ToString() + " Current Treatment Plans";
+                TreatmentPlans.Text = Session.GetTreatmentPlanList(Session.Username).Count.ToString() + " Current Treatment Plans";
             }
             else
             {
