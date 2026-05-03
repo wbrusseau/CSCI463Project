@@ -85,6 +85,7 @@ namespace CSCI463Project
         {
             if (Session.UserRole == "Patient")
             {
+                EditPlanButton.Visible = false;
                 textBox1.Text = Session.FullName + "'s Treatment Plan";
                 List<string[]> treatmentplanList = Session.GetTreatmentPlanList(Session.Username);
                 for (int i = 0; i < treatmentplanList.Count; i++)

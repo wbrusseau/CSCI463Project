@@ -37,7 +37,7 @@
             panel5 = new Panel();
             textBox1 = new TextBox();
             TreatmentPlanBox = new TextBox();
-            button1 = new Button();
+            EditPlanButton = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -205,12 +205,13 @@
             // 
             textBox1.BackColor = Color.White;
             textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 20F);
+            textBox1.Enabled = false;
+            textBox1.Font = new Font("Segoe UI", 16F);
             textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(197, 60);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(587, 54);
+            textBox1.Size = new Size(587, 43);
             textBox1.TabIndex = 5;
             // 
             // TreatmentPlanBox
@@ -222,19 +223,19 @@
             TreatmentPlanBox.Size = new Size(390, 289);
             TreatmentPlanBox.TabIndex = 6;
             // 
-            // button1
+            // EditPlanButton
             // 
-            button1.BackColor = Color.FromArgb(64, 64, 64);
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Segoe UI", 12F);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(613, 145);
-            button1.Name = "button1";
-            button1.Size = new Size(171, 48);
-            button1.TabIndex = 9;
-            button1.Text = "Edit Plan";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            EditPlanButton.BackColor = Color.FromArgb(64, 64, 64);
+            EditPlanButton.FlatStyle = FlatStyle.Popup;
+            EditPlanButton.Font = new Font("Segoe UI", 12F);
+            EditPlanButton.ForeColor = Color.White;
+            EditPlanButton.Location = new Point(613, 145);
+            EditPlanButton.Name = "EditPlanButton";
+            EditPlanButton.Size = new Size(171, 48);
+            EditPlanButton.TabIndex = 9;
+            EditPlanButton.Text = "Edit Plan";
+            EditPlanButton.UseVisualStyleBackColor = false;
+            EditPlanButton.Click += button1_Click;
             // 
             // TreatmentPlan
             // 
@@ -242,7 +243,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(796, 438);
-            Controls.Add(button1);
+            Controls.Add(EditPlanButton);
             Controls.Add(TreatmentPlanBox);
             Controls.Add(textBox1);
             Controls.Add(panel3);
@@ -286,6 +287,6 @@
         #endregion
 
         private TextBox TreatmentPlanBox;
-        private Button button1;
+        private Button EditPlanButton;
     }
 }

@@ -72,6 +72,7 @@ namespace CSCI463Project
             textBox1.Text = Session.FullName + "'s Alerts";
             if (Session.UserRole == "Patient")
             {
+                AddAlertButton.Visible = false;
                 List<string[]> alerts = Session.GetPatientAlertData(Session.Username);
 
                 for (int i = 0; i < alerts.Count; i++)
@@ -85,6 +86,7 @@ namespace CSCI463Project
             }
             else
             {
+                Prescriptions.Text = "Prescriptions";
                 List<string> doctorPatients = Session.GetDoctorPatients();
 
                 foreach (string patientID in doctorPatients)

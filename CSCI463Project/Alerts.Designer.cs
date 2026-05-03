@@ -37,7 +37,7 @@
             panel5 = new Panel();
             textBox1 = new TextBox();
             AlertsBox = new TextBox();
-            button1 = new Button();
+            AddAlertButton = new Button();
             button2 = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -224,19 +224,26 @@
             AlertsBox.Size = new Size(425, 282);
             AlertsBox.TabIndex = 6;
             // 
-            // button1
+            // AddAlertButton
             // 
-            button1.BackColor = Color.Green;
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Segoe UI", 12F);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(637, 144);
-            button1.Name = "button1";
-            button1.Size = new Size(148, 63);
-            button1.TabIndex = 7;
-            button1.Text = "Add Alert";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            AddAlertButton.BackColor = Color.Green;
+            AddAlertButton.FlatStyle = FlatStyle.Popup;
+            AddAlertButton.Font = new Font("Segoe UI", 12F);
+            AddAlertButton.ForeColor = Color.White;
+            AddAlertButton.Location = new Point(637, 144);
+            AddAlertButton.Name = "AddAlertButton";
+            AddAlertButton.Size = new Size(148, 63);
+            AddAlertButton.TabIndex = 7;
+            AddAlertButton.Text = "Add Alert";
+            AddAlertButton.UseVisualStyleBackColor = false;
+            AddAlertButton.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(0, 0);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 0;
             // 
             // Alerts
             // 
@@ -244,7 +251,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(796, 438);
-            Controls.Add(button1);
+            Controls.Add(AddAlertButton);
             Controls.Add(AlertsBox);
             Controls.Add(textBox1);
             Controls.Add(panel3);
@@ -279,7 +286,7 @@
         private Panel panel5;
         private TextBox textBox1;
         private TextBox AlertsBox;
-        private Button button1;
+        private Button AddAlertButton;
         private Button button2;
     }
 }
