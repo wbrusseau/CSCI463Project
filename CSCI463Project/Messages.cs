@@ -82,15 +82,17 @@ namespace CSCI463Project
             foreach (string[] message in messages)
             {
                 string messSender = message[0];
-                string content = message[1];
+                string messUsername = message[1];
                 string date = message[2];
-                MessageText.AppendText($"From: {messSender} - {date}\n{content}\n");
+                string messageInfo = message[3];
+                MessageText.AppendText($"From: {messSender} : {messUsername} | {date} \n  {messageInfo}");
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            AddMessage message = new AddMessage();
+            message.ShowDialog();
         }
     }
 }

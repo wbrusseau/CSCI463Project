@@ -33,6 +33,20 @@ namespace CSCI463Project
             );
         }
 
+        //Get Patients Doctors
+        public static List<string> GetPatientsDoctors()
+        {
+            List<string> doctors = new List<string>();
+            string file = GetPath(Username + "_doctors.txt");
+            if (!File.Exists(file))
+                return doctors;
+            foreach (string line in File.ReadLines(file))
+            {
+                string[] parts = line.Split('|');
+                doctors.Add(parts[0]); // DR1001
+            }
+            return doctors;
+        }
 
         //Get Doctors Patients
         public static List<string> GetDoctorPatients()
@@ -252,7 +266,7 @@ namespace CSCI463Project
             }
             foreach (string line in File.ReadLines(file))
             {
-                //File is formatted as "Sender|Message|Date"
+                //File is formatted as "Sender:ID|Date|Message"
                 string[] parts = line.Split('|');
                 if (parts.Length < 3)
                 {

@@ -23,18 +23,21 @@ namespace CSCI463Project
             string patient = PatientBox.SelectedItem.ToString();
             string type = "";
             string description = textBox1.Text;
+            string filePath = Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                "Information",
+                patient + "_treatmentplan.txt"
+            );
             if (HighRiskButton.Checked && !string.IsNullOrEmpty(description) && !string.IsNullOrEmpty(patient))
             {
                 type = "High Risk";
-                string file = patient + "_treatmentplan.txt";
-                File.AppendAllText(file, type + "|" + description + Environment.NewLine);
+                File.WriteAllText(filePath, type + "|" + description + Environment.NewLine);
                 MessageBox.Show("Treatment plan created successfully.");
             }
             else if (LowRiskButton.Checked && !string.IsNullOrEmpty(description) && !string.IsNullOrEmpty(patient))
             {
                 type = "Low Risk";
-                string file = patient + "_treatmentplan.txt";
-                File.AppendAllText(file, type + "|" + description + Environment.NewLine);
+                File.WriteAllText(filePath, type + "|" + description + Environment.NewLine);
                 MessageBox.Show("Treatment plan created successfully.");
             }
             else
