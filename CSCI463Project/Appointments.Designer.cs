@@ -21,7 +21,6 @@
         }
         private void InitializeComponent()
         {
-            string userRole = Session.UserRole;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Appointments));
             LogoutButton = new Button();
             panel1 = new Panel();
@@ -130,12 +129,12 @@
             Prescriptions.Name = "Prescriptions";
             Prescriptions.Size = new Size(164, 54);
             Prescriptions.TabIndex = 3;
-            Prescriptions.Text = "My Prescriptions";
+            Prescriptions.Text = "Prescriptions";
             Prescriptions.TextAlign = ContentAlignment.MiddleLeft;
             Prescriptions.UseVisualStyleBackColor = false;
             Prescriptions.Click += Prescriptions_Click;
             // 
-            // Appintments
+            // AppointmentsButton
             // 
             AppointmentsButton.BackColor = Color.White;
             AppointmentsButton.Enabled = false;
@@ -213,6 +212,7 @@
             // 
             textBox1.BackColor = Color.White;
             textBox1.BorderStyle = BorderStyle.None;
+            textBox1.Enabled = false;
             textBox1.Font = new Font("Segoe UI", 20F);
             textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(197, 60);
@@ -220,7 +220,6 @@
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(569, 54);
             textBox1.TabIndex = 5;
-            textBox1.Text = Session.Username + "'s Appointments";
             // 
             // Appointments
             // 

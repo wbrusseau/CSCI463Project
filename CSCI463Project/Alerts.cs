@@ -86,7 +86,6 @@ namespace CSCI463Project
             }
             else
             {
-                Prescriptions.Text = "Prescriptions";
                 List<string> doctorPatients = Session.GetDoctorPatients();
 
                 foreach (string patientID in doctorPatients)

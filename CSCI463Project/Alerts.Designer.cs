@@ -131,7 +131,7 @@
             Prescriptions.Name = "Prescriptions";
             Prescriptions.Size = new Size(164, 54);
             Prescriptions.TabIndex = 3;
-            Prescriptions.Text = "My Prescriptions";
+            Prescriptions.Text = "Prescriptions";
             Prescriptions.TextAlign = ContentAlignment.MiddleLeft;
             Prescriptions.UseVisualStyleBackColor = false;
             Prescriptions.Click += Prescriptions_Click_1;
@@ -206,6 +206,7 @@
             // 
             textBox1.BackColor = Color.White;
             textBox1.BorderStyle = BorderStyle.None;
+            textBox1.Enabled = false;
             textBox1.Font = new Font("Segoe UI", 20F);
             textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(197, 60);

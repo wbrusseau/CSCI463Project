@@ -130,7 +130,7 @@
             PrescriptionsButton.Name = "PrescriptionsButton";
             PrescriptionsButton.Size = new Size(164, 54);
             PrescriptionsButton.TabIndex = 3;
-            PrescriptionsButton.Text = "My Prescriptions";
+            PrescriptionsButton.Text = "Prescriptions";
             PrescriptionsButton.TextAlign = ContentAlignment.MiddleLeft;
             PrescriptionsButton.UseVisualStyleBackColor = false;
             PrescriptionsButton.Click += PrescriptionsButton_Click;
@@ -205,6 +205,7 @@
             // 
             textBox1.BackColor = Color.White;
             textBox1.BorderStyle = BorderStyle.None;
+            textBox1.Enabled = false;
             textBox1.Font = new Font("Segoe UI", 20F);
             textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(197, 60);
