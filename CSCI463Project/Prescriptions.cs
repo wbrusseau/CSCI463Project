@@ -64,6 +64,8 @@
         {
             if (Session.UserRole == "Patient")
             {
+                AddPrescriptionButton.Visible = false;
+                RemovePrescriptionButton.Visible = false;
                 textBox1.Text = Session.FullName + "'s Prescriptions";
                 List<string[]> preslist = Session.GetPatientsPrescriptionsList(Session.Username);
                 for (int i = 0; i < preslist.Count; i++)
@@ -94,6 +96,18 @@
             }
 
 
+        }
+
+        private void AddPrescriptionButton_Click(object sender, EventArgs e)
+        {
+            AddPrescription adPrForm = new AddPrescription();
+            adPrForm.ShowDialog();
+        }
+
+        private void RemovePrescriptionButton_Click(object sender, EventArgs e)
+        {
+            RemovePrescription removePrescription = new RemovePrescription();
+            removePrescription.ShowDialog();
         }
     }
 }

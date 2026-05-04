@@ -1,0 +1,10 @@
+Oxycodone|5mg|Every4-6hours
+Hydrocodone|5mg|Every4-6hours
+Morphine|10mg|Every4hours
+Codeine|30mg|Every4-6hours
+FentanylPatch|25mcg/hr|Every72hours
+Tramadol|50mg|Every4-6hours
+Methadone|10mg|Every8-12hours
+Hydromorphone|2mg|Every4-6hours
+Oxymorphone|5mg|Every6hours
+Buprenorphine|2mg|OnceDaily

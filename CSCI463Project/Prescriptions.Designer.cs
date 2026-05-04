@@ -37,6 +37,8 @@
             panel5 = new Panel();
             textBox1 = new TextBox();
             PrescriptionBox = new TextBox();
+            AddPrescriptionButton = new Button();
+            RemovePrescriptionButton = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -223,9 +225,37 @@
             PrescriptionBox.PlaceholderText = "No Current Prescriptions";
             PrescriptionBox.ReadOnly = true;
             PrescriptionBox.ScrollBars = ScrollBars.Vertical;
-            PrescriptionBox.Size = new Size(568, 286);
+            PrescriptionBox.Size = new Size(428, 286);
             PrescriptionBox.TabIndex = 6;
             PrescriptionBox.TextChanged += textBox2_TextChanged;
+            // 
+            // AddPrescriptionButton
+            // 
+            AddPrescriptionButton.BackColor = Color.Green;
+            AddPrescriptionButton.FlatStyle = FlatStyle.Popup;
+            AddPrescriptionButton.Font = new Font("Segoe UI", 12F);
+            AddPrescriptionButton.ForeColor = Color.White;
+            AddPrescriptionButton.Location = new Point(632, 165);
+            AddPrescriptionButton.Name = "AddPrescriptionButton";
+            AddPrescriptionButton.Size = new Size(154, 86);
+            AddPrescriptionButton.TabIndex = 7;
+            AddPrescriptionButton.Text = "Add Prescription";
+            AddPrescriptionButton.UseVisualStyleBackColor = false;
+            AddPrescriptionButton.Click += AddPrescriptionButton_Click;
+            // 
+            // RemovePrescriptionButton
+            // 
+            RemovePrescriptionButton.BackColor = Color.Maroon;
+            RemovePrescriptionButton.FlatStyle = FlatStyle.Popup;
+            RemovePrescriptionButton.Font = new Font("Segoe UI", 12F);
+            RemovePrescriptionButton.ForeColor = Color.White;
+            RemovePrescriptionButton.Location = new Point(634, 275);
+            RemovePrescriptionButton.Name = "RemovePrescriptionButton";
+            RemovePrescriptionButton.Size = new Size(154, 86);
+            RemovePrescriptionButton.TabIndex = 8;
+            RemovePrescriptionButton.Text = "Remove Prescription";
+            RemovePrescriptionButton.UseVisualStyleBackColor = false;
+            RemovePrescriptionButton.Click += RemovePrescriptionButton_Click;
             // 
             // Prescriptions
             // 
@@ -233,6 +263,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(796, 438);
+            Controls.Add(RemovePrescriptionButton);
+            Controls.Add(AddPrescriptionButton);
             Controls.Add(PrescriptionBox);
             Controls.Add(textBox1);
             Controls.Add(panel3);
@@ -276,5 +308,7 @@
         #endregion
 
         private TextBox PrescriptionBox;
+        private Button AddPrescriptionButton;
+        private Button RemovePrescriptionButton;
     }
 }
