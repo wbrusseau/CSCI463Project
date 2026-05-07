@@ -27,9 +27,9 @@
             label1 = new Label();
             panel2 = new Panel();
             Messages = new Button();
-            TreatmentPlan = new Button();
+            TreatmentPlans = new Button();
             Prescriptions = new Button();
-            Appointments = new Button();
+            AppointmentsButton = new Button();
             AlertsButton = new Button();
             Home = new Button();
             panel3 = new Panel();
@@ -84,9 +84,9 @@
             panel2.BackColor = Color.Gray;
             panel2.BackgroundImageLayout = ImageLayout.Zoom;
             panel2.Controls.Add(Messages);
-            panel2.Controls.Add(TreatmentPlan);
+            panel2.Controls.Add(TreatmentPlans);
             panel2.Controls.Add(Prescriptions);
-            panel2.Controls.Add(Appointments);
+            panel2.Controls.Add(AppointmentsButton);
             panel2.Controls.Add(AlertsButton);
             panel2.Controls.Add(Home);
             panel2.Location = new Point(0, 51);
@@ -108,19 +108,19 @@
             Messages.UseVisualStyleBackColor = false;
             Messages.Click += Messages_Click;
             // 
-            // TreatmentPlan
+            // TreatmentPlans
             // 
-            TreatmentPlan.BackColor = Color.White;
-            TreatmentPlan.FlatAppearance.BorderSize = 0;
-            TreatmentPlan.FlatStyle = FlatStyle.Popup;
-            TreatmentPlan.Location = new Point(0, 242);
-            TreatmentPlan.Name = "TreatmentPlan";
-            TreatmentPlan.Size = new Size(164, 54);
-            TreatmentPlan.TabIndex = 4;
-            TreatmentPlan.Text = "Treatment Plan";
-            TreatmentPlan.TextAlign = ContentAlignment.MiddleLeft;
-            TreatmentPlan.UseVisualStyleBackColor = false;
-            TreatmentPlan.Click += TreatmentPlan_Click;
+            TreatmentPlans.BackColor = Color.White;
+            TreatmentPlans.FlatAppearance.BorderSize = 0;
+            TreatmentPlans.FlatStyle = FlatStyle.Popup;
+            TreatmentPlans.Location = new Point(0, 242);
+            TreatmentPlans.Name = "TreatmentPlans";
+            TreatmentPlans.Size = new Size(164, 54);
+            TreatmentPlans.TabIndex = 4;
+            TreatmentPlans.Text = "Treatment Plan";
+            TreatmentPlans.TextAlign = ContentAlignment.MiddleLeft;
+            TreatmentPlans.UseVisualStyleBackColor = false;
+            TreatmentPlans.Click += TreatmentPlan_Click;
             // 
             // Prescriptions
             // 
@@ -136,19 +136,19 @@
             Prescriptions.UseVisualStyleBackColor = false;
             Prescriptions.Click += Prescriptions_Click_1;
             // 
-            // Appointments
+            // AppointmentsButton
             // 
-            Appointments.BackColor = Color.White;
-            Appointments.FlatAppearance.BorderSize = 0;
-            Appointments.FlatStyle = FlatStyle.Popup;
-            Appointments.Location = new Point(0, 122);
-            Appointments.Name = "Appointments";
-            Appointments.Size = new Size(164, 54);
-            Appointments.TabIndex = 2;
-            Appointments.Text = "Appointments";
-            Appointments.TextAlign = ContentAlignment.MiddleLeft;
-            Appointments.UseVisualStyleBackColor = false;
-            Appointments.Click += Appointments_Click;
+            AppointmentsButton.BackColor = Color.White;
+            AppointmentsButton.FlatAppearance.BorderSize = 0;
+            AppointmentsButton.FlatStyle = FlatStyle.Popup;
+            AppointmentsButton.Location = new Point(0, 122);
+            AppointmentsButton.Name = "AppointmentsButton";
+            AppointmentsButton.Size = new Size(164, 54);
+            AppointmentsButton.TabIndex = 2;
+            AppointmentsButton.Text = "Appointments";
+            AppointmentsButton.TextAlign = ContentAlignment.MiddleLeft;
+            AppointmentsButton.UseVisualStyleBackColor = false;
+            AppointmentsButton.Click += Appointments_Click;
             // 
             // AlertsButton
             // 
@@ -217,11 +217,11 @@
             // 
             // AlertsBox
             // 
-            AlertsBox.Enabled = false;
             AlertsBox.Location = new Point(195, 141);
             AlertsBox.Multiline = true;
             AlertsBox.Name = "AlertsBox";
             AlertsBox.ReadOnly = true;
+            AlertsBox.ScrollBars = ScrollBars.Vertical;
             AlertsBox.Size = new Size(425, 282);
             AlertsBox.TabIndex = 6;
             // 
@@ -279,9 +279,9 @@
         private Button AlertsButton;
         private Button Home;
         private Button Messages;
-        private Button TreatmentPlan;
+        private Button TreatmentPlans;
         private Button Prescriptions;
-        private Button Appointments;
+        private Button AppointmentsButton;
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;

@@ -11,7 +11,8 @@ namespace CSCI463Project
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            foreach (string line in File.ReadLines("Users.txt"))
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "information", "Users.txt");
+            foreach (string line in File.ReadLines(filePath))
             {
                 string[] parts = line.Split("|");
                 string userRole = parts[0];
@@ -35,6 +36,11 @@ namespace CSCI463Project
 
             }
             MessageBox.Show("Invalid username or password. Please try again.");
+        }
+
+        private void LoginPage_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -137,6 +137,7 @@
             Margin = new Padding(4);
             Name = "LoginPage";
             Text = "Login Page";
+            Load += LoginPage_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

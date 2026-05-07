@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace CSCI463Project
+﻿namespace CSCI463Project
 {
     public partial class AddPrescription : Form
     {
-        string treatmentPlanType;
         public AddPrescription()
         {
             InitializeComponent();
@@ -32,7 +20,7 @@ namespace CSCI463Project
                 string[] parts = line.Split('|');
                 if (parts.Length >= 3)
                 {
-                    string prescriptionInfo = $"{parts[0]} - {parts[1]} - {parts[2]}";
+                    string prescriptionInfo = $"{parts[0]}|{parts[1]}|{parts[2]}";
                     PrescriptionBox.Items.Add(prescriptionInfo);
                 }
             }
@@ -60,26 +48,36 @@ namespace CSCI463Project
             if (string.IsNullOrEmpty(patient) || string.IsNullOrEmpty(prescription))
             {
                 MessageBox.Show("Please select a patient and a prescription.");
+                return;
             }
-            else
+
+            string[] selectedParts = prescription.Split('|');
+
+            if (selectedParts.Length < 3)
             {
-                foreach(string line in File.ReadAllLines(prescriptionfilePath))
-                {
-                    string[] parts = line.Split('|');
-                    string prescriptionName = parts[0];
-                    if (prescriptionName == prescription)
-                    {
-                        string dosage = parts[1];
-                        string frequency = parts[2];
-                        string prescriptionInfo = $"{prescription} - {dosage} - {frequency}";
-                        File.AppendAllText(patientsPrescriptionFilePath, prescriptionInfo + Environment.NewLine);
-                        File.AppendAllText(patientsAlertsFilePath, $"Prescription '{prescription}' added." + Environment.NewLine);
-                        break;
-                    }
-                }
-                MessageBox.Show($"Prescription '{prescription}' added for patient '{patient}'.");
-                File.AppendAllText(prescriptionfilePath, prescription + Environment.NewLine);
+                MessageBox.Show("Invalid prescription format. Please select a valid prescription.");
+                return;
             }
+
+            string selectedPrescriptionName = selectedParts[0];
+
+            if (File.Exists(patientsPrescriptionFilePath))
+            {
+                var existingPrescriptions = File.ReadAllLines(patientsPrescriptionFilePath);
+                if (existingPrescriptions.Contains(prescription))
+                {
+                    MessageBox.Show("Patient already has this prescription.");
+                    return;
+                }
+            }
+            File.AppendAllText(patientsPrescriptionFilePath, prescription + Environment.NewLine);
+
+            string date = DateTime.Now.ToString("MM/dd/yyyy");
+            string alertMessage = $"New Prescription Added|{date}|'{selectedPrescriptionName}' added.";
+            File.AppendAllText(patientsAlertsFilePath, alertMessage + Environment.NewLine);
+
+            MessageBox.Show($"Prescription '{selectedPrescriptionName}' added for patient '{patient}'.");
         }
     }
 }
+

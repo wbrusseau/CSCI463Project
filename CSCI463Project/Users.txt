@@ -1,2 +1,0 @@
-Doctor|DT1204|Password456|Flint Brunt
-Patient|PT1001|Password123|Jane Doe

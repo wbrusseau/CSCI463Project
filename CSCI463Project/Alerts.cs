@@ -84,7 +84,7 @@ namespace CSCI463Project
                     AlertsBox.AppendText(displayText + Environment.NewLine);
                 }
             }
-            else
+            else if (Session.UserRole == "Doctor")
             {
                 List<string> doctorPatients = Session.GetDoctorPatients();
 
@@ -104,6 +104,33 @@ namespace CSCI463Project
                         AlertsBox.AppendText(
                             Environment.NewLine + $"{patientID} | {alertType} | {alertDate} {alertMessage}"
                             + Environment.NewLine
+                        );
+                    }
+                }
+            }
+            else if (Session.UserRole == "Admin")
+            {
+                AppointmentsButton.Visible = false;
+                TreatmentPlans.Visible = false;
+                Messages.Visible = false;
+                TreatmentPlans.Visible = false;
+                List<string[]> allPatients = Session.GetAllPatients();
+
+                foreach (var patient in allPatients)
+                {
+                    List<string[]> alerts = Session.GetPatientAlertData(patient[1]);
+                    if (alerts.Count == 0)
+                        continue;
+                    foreach (var alert in alerts)
+                    {
+                        string patientID = patient[1];
+                        string alertType = alert[0];
+                        string alertDate = alert[1];
+                        string alertMessage = alert[2];
+
+                        AlertsBox.AppendText(
+                        Environment.NewLine + $"{patientID} | {alertType} | {alertDate} {alertMessage}"
+                        + Environment.NewLine
                         );
                     }
                 }

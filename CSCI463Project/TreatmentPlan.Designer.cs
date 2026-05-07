@@ -250,7 +250,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "TreatmentPlan";
-            Text = "Alerts";
+            Text = "Treatment Plan";
             Load += TreatmentPlan_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

@@ -107,11 +107,11 @@ namespace CSCI463Project
         //Display alert messages
         public static string GetAlertMessage(string patientID, string alertID)
         {
-            foreach(var parts in GetPatientAlertData(patientID))
+            foreach (var parts in GetPatientAlertData(patientID))
             {
                 if (parts[0] == alertID)
                 {
-                    return parts[1]; // AlertMessage
+                    return parts[2]; // AlertMessage
                 }
             }
             return "";
@@ -124,7 +124,7 @@ namespace CSCI463Project
             {
                 if (parts[0] == alertID)
                 {
-                    return parts[2]; // AlertDate
+                    return parts[1]; // AlertDate
                 }
             }
             return "";
@@ -140,8 +140,8 @@ namespace CSCI463Project
         public static List<string> getDoctorsAlertsList()
         {
             List<string> allAlerts = new List<string>();
-            
-            foreach(string patient in GetDoctorPatients())
+
+            foreach (string patient in GetDoctorPatients())
             {
                 foreach (var alert in GetPatientAlertData(patient))
                 {
@@ -246,7 +246,8 @@ namespace CSCI463Project
             return trtmnt;
         }
 
-        public static int GetDoctorsTreatmentPlanCount() { 
+        public static int GetDoctorsTreatmentPlanCount()
+        {
             return GetDoctorsTreatmentPlanList().Count;
         }
 
@@ -276,5 +277,107 @@ namespace CSCI463Project
             }
             return messages;
         }
+
+        public static List<string[]> GetAdminsInventory()
+        {
+            List<string[]> inventory = new List<string[]>();
+            string file = GetPath("prescriptioninventory.txt");
+            if (!File.Exists(file))
+            {
+                return inventory;
+            }
+            foreach (string line in File.ReadLines(file))
+            {
+                //File is formatted as "ItemName|AuditStatus|Quantity"
+                string[] parts = line.Split('|');
+                if (parts.Length < 3)
+                {
+                    continue;
+                }
+                inventory.Add(parts);
+            }
+            return inventory;
+        }
+
+        public static int GetAuditAmount()
+        {
+            int count = 0;
+            string file = GetPath("prescriptioninventory.txt");
+            if (!File.Exists(file))
+            {
+                return count;
+            }
+            foreach (string line in File.ReadLines(file))
+            {
+                string[] parts = line.Split('|');
+                if (parts.Length < 3)
+                {
+                    continue;
+                }
+                if (parts[1] == "Audit Required")
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public static List<string[]> GetAudits()
+        {
+            List<string[]> audits = new List<string[]>();
+            string file = GetPath("prescriptioninventory.txt");
+            if (!File.Exists(file))
+            {
+                return audits;
+            }
+            foreach (string line in File.ReadLines(file))
+            {
+                //File is formatted as "ItemName|AuditStatus|Quantity"
+                string[] parts = line.Split('|');
+                if (parts.Length < 3)
+                {
+                    continue;
+                }
+                if (parts[1] == "Audit Required")
+                {
+                    audits.Add(parts);
+                }
+            }
+            return audits;
+        }
+
+        public static List<string[]> GetAllPatients()
+        {
+            List<string[]> patients = new List<string[]>();
+            string file = GetPath("Users.txt");
+            if (!File.Exists(file))
+            {
+                return patients;
+            }
+            foreach (string line in File.ReadLines(file))
+            {
+
+                //File is formatted as "Type|Username|FullName"
+                string[] parts = line.Split('|');
+                if (parts.Length < 3 || parts[0] != "Patient")
+                {
+                    continue;
+                }
+
+                patients.Add(parts);
+            }
+            return patients;
+        }
+
+        public static int GetAllPatientsAlertsCount()
+        {
+            int count = 0;
+            foreach (var patient in GetAllPatients())
+            {
+                count += GetPatientsAlertCount(patient[1]);
+            }
+            return count;
+        }
     }
+    
 }

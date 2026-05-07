@@ -36,7 +36,7 @@
             Messages = new Button();
             Prescriptions = new Button();
             TreatmentPlan = new Button();
-            Appointments = new Button();
+            AppointmentsButton = new Button();
             Alerts = new Button();
             Home = new Button();
             panel3 = new Panel();
@@ -46,6 +46,7 @@
             textBox1 = new TextBox();
             AlertsList = new TextBox();
             TreatmentPlans = new TextBox();
+            AuditsText = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -93,7 +94,7 @@
             panel2.Controls.Add(Messages);
             panel2.Controls.Add(Prescriptions);
             panel2.Controls.Add(TreatmentPlan);
-            panel2.Controls.Add(Appointments);
+            panel2.Controls.Add(AppointmentsButton);
             panel2.Controls.Add(Alerts);
             panel2.Controls.Add(Home);
             panel2.Location = new Point(0, 51);
@@ -143,19 +144,19 @@
             TreatmentPlan.UseVisualStyleBackColor = false;
             TreatmentPlan.Click += TreatmentPlan_Click;
             // 
-            // Appointments
+            // AppointmentsButton
             // 
-            Appointments.BackColor = Color.White;
-            Appointments.FlatAppearance.BorderSize = 0;
-            Appointments.FlatStyle = FlatStyle.Popup;
-            Appointments.Location = new Point(0, 122);
-            Appointments.Name = "Appointments";
-            Appointments.Size = new Size(164, 54);
-            Appointments.TabIndex = 2;
-            Appointments.Text = "Appointments";
-            Appointments.TextAlign = ContentAlignment.MiddleLeft;
-            Appointments.UseVisualStyleBackColor = false;
-            Appointments.Click += button2_Click;
+            AppointmentsButton.BackColor = Color.White;
+            AppointmentsButton.FlatAppearance.BorderSize = 0;
+            AppointmentsButton.FlatStyle = FlatStyle.Popup;
+            AppointmentsButton.Location = new Point(0, 122);
+            AppointmentsButton.Name = "AppointmentsButton";
+            AppointmentsButton.Size = new Size(164, 54);
+            AppointmentsButton.TabIndex = 2;
+            AppointmentsButton.Text = "Appointments";
+            AppointmentsButton.TextAlign = ContentAlignment.MiddleLeft;
+            AppointmentsButton.UseVisualStyleBackColor = false;
+            AppointmentsButton.Click += button2_Click;
             // 
             // Alerts
             // 
@@ -237,7 +238,7 @@
             AlertsList.Location = new Point(476, 135);
             AlertsList.Multiline = true;
             AlertsList.Name = "AlertsList";
-            AlertsList.PlaceholderText = "No Appointments this week";
+            AlertsList.PlaceholderText = "No current Alerts";
             AlertsList.ReadOnly = true;
             AlertsList.Size = new Size(245, 281);
             AlertsList.TabIndex = 6;
@@ -247,10 +248,19 @@
             TreatmentPlans.Location = new Point(200, 139);
             TreatmentPlans.Multiline = true;
             TreatmentPlans.Name = "TreatmentPlans";
-            TreatmentPlans.PlaceholderText = "No current Patient alerts";
+            TreatmentPlans.PlaceholderText = "No current treatment plans";
             TreatmentPlans.ReadOnly = true;
             TreatmentPlans.Size = new Size(243, 282);
             TreatmentPlans.TabIndex = 7;
+            // 
+            // AuditsText
+            // 
+            AuditsText.Location = new Point(200, 139);
+            AuditsText.Multiline = true;
+            AuditsText.Name = "AuditsText";
+            AuditsText.ReadOnly = true;
+            AuditsText.Size = new Size(243, 282);
+            AuditsText.TabIndex = 8;
             // 
             // Dashboard
             // 
@@ -258,6 +268,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(796, 438);
+            Controls.Add(AuditsText);
             Controls.Add(TreatmentPlans);
             Controls.Add(AlertsList);
             Controls.Add(textBox1);
@@ -288,7 +299,7 @@
         private Button Messages;
         private Button TreatmentPlan;
         private Button Prescriptions;
-        private Button Appointments;
+        private Button AppointmentsButton;
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
@@ -296,5 +307,6 @@
         private TextBox textBox1;
         private TextBox AlertsList;
         private TextBox TreatmentPlans;
+        private TextBox AuditsText;
     }
 }

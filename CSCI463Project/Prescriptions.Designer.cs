@@ -271,7 +271,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Prescriptions";
-            Text = "Alerts";
+            Text = "Prescriptions";
             Load += Prescriptions_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

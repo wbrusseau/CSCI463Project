@@ -1,0 +1,10 @@
+Oxycodone|No Audit Needed|254
+Hydrocodone|Audit Required|187
+Morphine|No Audit Needed|96
+Codeine|Audit Required|143
+FentanylPatch|Audit Required|58
+Tramadol|No Audit Needed|312
+Methadone|Audit Required|74
+Hydromorphone|No Audit Needed|129
+Oxymorphone|Audit Required|41
+Buprenorphine|No Audit Needed|208

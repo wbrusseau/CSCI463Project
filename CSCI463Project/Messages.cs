@@ -85,7 +85,7 @@ namespace CSCI463Project
                 string messUsername = message[1];
                 string date = message[2];
                 string messageInfo = message[3];
-                MessageText.AppendText($"From: {messSender} : {messUsername} | {date} \n  {messageInfo}");
+                MessageText.AppendText($"From: {messSender} : {messUsername} | {date} \n  {messageInfo}" + Environment.NewLine);
             }
         }
 

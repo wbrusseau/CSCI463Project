@@ -1,2 +1,3 @@
-Doctor|FlintBrunt|Password456
-Patient|JohnSmith|Password123
+Doctor|DT1204|Password456|Flint Brunt
+Patient|PT1001|Password123|Jane Doe
+Admin|AD5044|AdminPass789|John Smith

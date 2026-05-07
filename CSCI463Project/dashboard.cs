@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace CSCI463Project
+﻿namespace CSCI463Project
 {
     public partial class Dashboard : Form
     {
@@ -22,15 +12,26 @@ namespace CSCI463Project
             textBox1.Text = "Welcome, " + Session.FullName + "!";
             if (Session.UserRole == "Patient")
             {
-                AlertsList.Text = Session.GetPatientsAlertCount(Session.Username).ToString() + " Current Alerts";
-                TreatmentPlans.Text = Session.GetTreatmentPlanList(Session.Username).Count.ToString() + " Current Treatment Plans";
+                AuditsText.Visible = false;
+                AlertsList.Text = Session.GetPatientsAlertCount(Session.Username).ToString() + " Current Alert(s)";
+                TreatmentPlans.Text = Session.GetTreatmentPlanList(Session.Username).Count.ToString() + " Current Treatment Plan(s)";
             }
-            else
+            else if (Session.UserRole == "Doctor")
             {
-                AlertsList.Text = Session.GetDoctorsAlertsCount().ToString() + " Current Patient Alerts";
-                TreatmentPlans.Text = Session.GetDoctorsTreatmentPlanCount().ToString() + " Current Treatment Plans";
+                AuditsText.Visible = false;
+                AlertsList.Text = Session.GetDoctorsAlertsCount().ToString() + " Current Patient Alert(s)";
+                TreatmentPlans.Text = Session.GetDoctorsTreatmentPlanCount().ToString() + " Current Treatment Plan(s)";
             }
-            
+            else if (Session.UserRole == "Admin")
+            {
+                AppointmentsButton.Visible = false;
+                TreatmentPlan.Visible = false;
+                Messages.Visible = false;
+                TreatmentPlans.Visible = false;
+                AlertsList.Text = Session.GetAllPatientsAlertsCount().ToString() + " Current Alert(s)";
+                AuditsText.Text = Session.GetAuditAmount().ToString() + " Audit(s) to Review";
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)

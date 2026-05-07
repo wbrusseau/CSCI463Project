@@ -220,6 +220,7 @@
             MessageText.Multiline = true;
             MessageText.Name = "MessageText";
             MessageText.ReadOnly = true;
+            MessageText.ScrollBars = ScrollBars.Vertical;
             MessageText.Size = new Size(288, 271);
             MessageText.TabIndex = 6;
             // 
@@ -246,7 +247,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Messages";
-            Text = "Alerts";
+            Text = "Messages";
             Load += Messages_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

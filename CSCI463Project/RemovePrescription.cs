@@ -28,6 +28,7 @@ namespace CSCI463Project
 
         private void PatientBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            PatientsPrescriptions.Items.Clear();
             string filePath = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
                 "Information",
@@ -38,7 +39,7 @@ namespace CSCI463Project
                 string[] parts = line.Split('|');
                 if (parts.Length >= 3)
                 {
-                    string prescriptionInfo = $"{parts[0]} - {parts[1]} - {parts[2]}";
+                    string prescriptionInfo = $"{parts[0]}|{parts[1]}|{parts[2]}";
                     PatientsPrescriptions.Items.Add(prescriptionInfo);
                 }
             }
@@ -46,15 +47,26 @@ namespace CSCI463Project
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string selectedPrescription = PatientsPrescriptions.SelectedItem?.ToString();
             string filePath = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
                 "Information",
                 PatientBox.SelectedItem.ToString() + "_prescriptions.txt"
             );
-            foreach(string line in File.ReadAllLines(filePath))
+            string alertfilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                "Information",
+                PatientBox.SelectedItem.ToString() + "_alerts.txt"
+            );
+
+            if (string.IsNullOrEmpty(selectedPrescription))
+            {
+                MessageBox.Show("Please select a prescription to remove.");
+                return;
+            }
+            foreach (string line in File.ReadAllLines(filePath))
             {
                 string[] parts = line.Split('|');
-                string prescriptionInfo = $"{parts[0]} - {parts[1]} - {parts[2]}";
+                string prescriptionInfo = $"{parts[0]}|{parts[1]}|{parts[2]}";
                 if (prescriptionInfo == PatientsPrescriptions.SelectedItem.ToString())
                 {
                     List<string> lines = File.ReadAllLines(filePath).ToList();
@@ -62,10 +74,9 @@ namespace CSCI463Project
                     File.WriteAllLines(filePath, lines);
                     MessageBox.Show("Prescription removed successfully.");
                     PatientsPrescriptions.Items.Remove(PatientsPrescriptions.SelectedItem);
-                    break;
+                    return;
                 }
             }
-            MessageBox.Show("Please select a prescription to remove.");
         }
     }
 }
