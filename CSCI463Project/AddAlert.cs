@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,10 +22,21 @@ namespace CSCI463Project
 
         private void AddAlert_Load(object sender, EventArgs e)
         {
-            List<string> patients = Session.GetDoctorPatients();
-            foreach (string patient in patients)
+            if (Session.Username == "Doctor")
             {
-                PatientBox.Items.Add(patient);
+                List<string> patients = Session.GetDoctorPatients();
+                foreach (string patient in patients)
+                {
+                    PatientBox.Items.Add(patient);
+                }
+            }
+            else if (Session.Username == "Admin")
+            {
+                List<string[]> allPatients = Session.GetAllPatients();
+                foreach (string[] patient in allPatients)
+                {
+                    PatientBox.Items.Add(patient[0]);
+                }
             }
         }
 
@@ -57,7 +69,8 @@ namespace CSCI463Project
                 string date = DateTime.Now.ToString("MM/dd/yyyy");
                 File.AppendAllText(filePath, type + "|" + date + "|" + description + Environment.NewLine);
                 MessageBox.Show("Alert created successfully."); 
-                
+                Session.AddLog("Add Alert", patient, "Added alert of type: " + type + " with description: " + description);
+
             }
             else
             {

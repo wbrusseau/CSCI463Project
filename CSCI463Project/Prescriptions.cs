@@ -64,6 +64,7 @@
         {
             if (Session.UserRole == "Patient")
             {
+                AuditButton.Visible = false;
                 AddPrescriptionButton.Visible = false;
                 RemovePrescriptionButton.Visible = false;
                 textBox1.Text = Session.FullName + "'s Prescriptions";
@@ -75,8 +76,9 @@
                 }
 
             }
-            else
+            else if (Session.UserRole == "Doctor")
             {
+                AuditButton.Visible = false;
                 textBox1.Text = Session.FullName + "'s Patients' Prescriptions";
                 List<string> patients = Session.GetDoctorPatients();
                 for (int i = 0; i < patients.Count; i++)
@@ -94,6 +96,24 @@
                 }
 
             }
+            else if (Session.UserRole == "Admin")
+            {
+                textBox1.Text = "Patients' Prescriptions";
+                List<string[]> allPatients = Session.GetAllPatients();
+                for (int i = 0; i < allPatients.Count; i++)
+                {
+                    List<string[]> preslist = Session.GetPatientsPrescriptionsList(allPatients[i][0]);
+                    for (int j = 0; j < preslist.Count; j++)
+                    {
+                        if (string.IsNullOrEmpty(preslist[j][0]) && string.IsNullOrEmpty(preslist[j][1]) && string.IsNullOrEmpty(preslist[j][2]))
+                        {
+                            continue; // Skip empty prescriptions
+                        }
+                        string presInfo = $"Patient: {allPatients[i][1]} - Prescription {j + 1}: {preslist[j][0]} - {preslist[j][1]} - {preslist[j][2]}";
+                        PrescriptionBox.AppendText(presInfo + Environment.NewLine);
+                    }
+                }
+            }
 
 
         }
@@ -108,6 +128,12 @@
         {
             RemovePrescription removePrescription = new RemovePrescription();
             removePrescription.ShowDialog();
+        }
+
+        private void AuditButton_Click(object sender, EventArgs e)
+        {
+            AuditInventory auditInventory = new AuditInventory();
+            auditInventory.ShowDialog();
         }
     }
 }

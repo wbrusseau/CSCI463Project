@@ -19,10 +19,22 @@ namespace CSCI463Project
 
         private void RemovePrescription_Load(object sender, EventArgs e)
         {
-            List<string> patients = Session.GetDoctorPatients();
-            foreach (string patient in patients)
+            if (Session.Username == "Doctor")
             {
-                PatientBox.Items.Add(patient);
+                List<string> patients = Session.GetDoctorPatients();
+                foreach (string patient in patients)
+                {
+                    PatientBox.Items.Add(patient);
+                }
+            }
+            else if (Session.Username == "Admin")
+            {
+                List<string[]> patients = Session.GetAllPatients();
+                for (int i = 0; i < patients.Count; i++)
+                {
+                    string patientID = patients[i][1];
+                    PatientBox.Items.Add(patientID);
+                }
             }
         }
 
@@ -74,6 +86,7 @@ namespace CSCI463Project
                     File.WriteAllLines(filePath, lines);
                     MessageBox.Show("Prescription removed successfully.");
                     PatientsPrescriptions.Items.Remove(PatientsPrescriptions.SelectedItem);
+                    Session.AddLog("Remove Prescription", PatientBox.SelectedItem.ToString(), prescriptionInfo);
                     return;
                 }
             }

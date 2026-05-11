@@ -35,8 +35,9 @@
             panel3 = new Panel();
             panel4 = new Panel();
             panel5 = new Panel();
-            panel6 = new Panel();
             textBox1 = new TextBox();
+            AddAppointmentButton = new Button();
+            AppointmentBox = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -200,14 +201,6 @@
             panel5.Size = new Size(19, 302);
             panel5.TabIndex = 0;
             // 
-            // panel6
-            // 
-            panel6.BackColor = Color.Black;
-            panel6.Location = new Point(452, 129);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(10, 300);
-            panel6.TabIndex = 4;
-            // 
             // textBox1
             // 
             textBox1.BackColor = Color.White;
@@ -221,19 +214,43 @@
             textBox1.Size = new Size(569, 54);
             textBox1.TabIndex = 5;
             // 
+            // AddAppointmentButton
+            // 
+            AddAppointmentButton.BackColor = Color.Green;
+            AddAppointmentButton.FlatStyle = FlatStyle.Popup;
+            AddAppointmentButton.ForeColor = Color.White;
+            AddAppointmentButton.Location = new Point(631, 173);
+            AddAppointmentButton.Name = "AddAppointmentButton";
+            AddAppointmentButton.RightToLeft = RightToLeft.No;
+            AddAppointmentButton.Size = new Size(145, 82);
+            AddAppointmentButton.TabIndex = 7;
+            AddAppointmentButton.Text = "Add Appointment";
+            AddAppointmentButton.UseVisualStyleBackColor = false;
+            AddAppointmentButton.Click += AddAppointmentButton_Click;
+            // 
+            // AppointmentBox
+            // 
+            AppointmentBox.Location = new Point(200, 146);
+            AppointmentBox.Multiline = true;
+            AppointmentBox.Name = "AppointmentBox";
+            AppointmentBox.Size = new Size(418, 278);
+            AppointmentBox.TabIndex = 8;
+            // 
             // Appointments
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(796, 438);
+            Controls.Add(AppointmentBox);
+            Controls.Add(AddAppointmentButton);
             Controls.Add(textBox1);
-            Controls.Add(panel6);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Appointments";
             Text = "Alerts";
+            Load += Appointments_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -258,8 +275,9 @@
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
-        private Panel panel6;
         private TextBox textBox1;
+        private Button AddAppointmentButton;
+        private TextBox AppointmentBox;
     }
     #region Windows Form Designer generated code
 

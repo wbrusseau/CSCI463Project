@@ -64,5 +64,45 @@ namespace CSCI463Project
             lgPage.ShowDialog();
             this.Close();
         }
+
+        private void Appointments_Load(object sender, EventArgs e)
+        {
+            if (Session.UserRole == "Patient")
+            {
+                textBox1.Text = Session.FullName + "'s Appointments";
+                List<string[]> appointments = Session.GetUpcomingAppointments();
+                foreach (string[] appointment in appointments)
+                {
+                    string displayText =
+                        $"{appointment[0]} {appointment[1]} - " +
+                        $"Doctor: {appointment[2]} - " +
+                        $"Patient: {appointment[3]} - " +
+                        $"{appointment[4]}";
+
+                    AppointmentBox.AppendText(displayText + Environment.NewLine);
+                }
+            }
+            else
+            {
+                textBox1.Text = "Doctor's Appointments";
+                List<string[]> appointments = Session.GetUpcomingAppointments();
+                foreach (string[] appointment in appointments)
+                {
+                    string displayText =
+                        $"{appointment[0]} {appointment[1]} - " +
+                        $"Doctor: {appointment[2]} - " +
+                        $"Patient: {appointment[3]} - " +
+                        $"{appointment[4]}";
+
+                    AppointmentBox.AppendText(displayText + Environment.NewLine);
+                }
+            }
+        }
+
+        private void AddAppointmentButton_Click(object sender, EventArgs e)
+        {
+            AddAppointment addApptForm = new AddAppointment();
+            addApptForm.ShowDialog();
+        }
     }
 }

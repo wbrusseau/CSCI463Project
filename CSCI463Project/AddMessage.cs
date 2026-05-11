@@ -51,6 +51,7 @@ namespace CSCI463Project
                 string date = DateTime.Now.ToString("MM/dd/yyyy");
                 File.AppendAllText(filePath, Session.FullName + "|" + Session.Username + "|" + date + "|" + message + Environment.NewLine);
                 MessageBox.Show("Message sent successfully.");
+                Session.AddLog("Add Message", receiver, "Message: " + message);
             }
             else
             {

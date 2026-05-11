@@ -378,6 +378,83 @@ namespace CSCI463Project
             }
             return count;
         }
-    }
-    
+
+        public static List<string[]> GetAllMedicationAudits()
+        {
+            List<string[]> medication = new List<string[]>();
+            string file = GetPath("prescriptioninventory.txt");
+            if (!File.Exists(file))
+            {
+                return medication;
+            }
+            foreach (string line in File.ReadLines(file))
+            {
+                //File is formatted as "ItemName|AuditStatus|Quantity"
+                string[] parts = line.Split('|');
+                if (parts.Length < 3)
+                {
+                    continue;
+                }
+                if (parts[1] == "Audit Required")
+                {
+                    medication.Add(parts);
+                }
+            }
+            return medication;
+        }
+
+        public static void AddLog(string actionType, string target, string details)
+        {
+            string logFile = GetPath("SystemLogs.txt");
+
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            string logEntry = $"{timestamp} | {Session.Username} | {actionType} | {target} | {details}";
+            File.AppendAllText(logFile, logEntry + Environment.NewLine);
+        }
+
+        public static List<string[]> GetUpcomingAppointments()
+        {
+            List<string[]> appointments = new List<string[]>();
+
+            string file = GetPath(Username + "_appointments.txt");
+
+            if (!File.Exists(file))
+            {
+                return appointments;
+            }
+
+            foreach (string line in File.ReadLines(file))
+            {
+                string[] parts = line.Split('|');
+
+                if (parts.Length < 4)
+                {
+                    continue;
+                }
+
+                string dateString = parts[0];
+                string timeString = parts[1];
+
+                DateTime appointmentDateTime;
+
+                bool validDate = DateTime.TryParse(
+                    $"{dateString} {timeString}",
+                    out appointmentDateTime
+                );
+
+                if (!validDate)
+                {
+                    continue;
+                }
+
+                // ONLY future appointments
+                if (appointmentDateTime >= DateTime.Now)
+                {
+                    appointments.Add(parts);
+                }
+            }
+
+            return appointments;
+        }
+    } 
 }

@@ -33,12 +33,14 @@ namespace CSCI463Project
                 type = "High Risk";
                 File.WriteAllText(filePath, type + "|" + description + Environment.NewLine);
                 MessageBox.Show("Treatment plan created successfully.");
+                Session.AddLog("Create Treatment Plan", patient, $"Created treatment plan: {type} - {description}");
             }
             else if (LowRiskButton.Checked && !string.IsNullOrEmpty(description) && !string.IsNullOrEmpty(patient))
             {
                 type = "Low Risk";
                 File.WriteAllText(filePath, type + "|" + description + Environment.NewLine);
                 MessageBox.Show("Treatment plan created successfully.");
+                Session.AddLog("Create Treatment Plan", patient, $"Created treatment plan: {type} - {description}");
             }
             else
             {

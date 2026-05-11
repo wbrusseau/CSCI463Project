@@ -9,19 +9,40 @@
 
         private void AddPrescription_Load(object sender, EventArgs e)
         {
-            List<string> patients = Session.GetDoctorPatients();
-            string prescriptionFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Information", "prescriptions.txt");
-            foreach (string patient in patients)
+            if (Session.UserRole == "Doctor")
             {
-                PatientBox.Items.Add(patient);
-            }
-            foreach (string line in File.ReadAllLines(prescriptionFilePath))
-            {
-                string[] parts = line.Split('|');
-                if (parts.Length >= 3)
+
+                List<string> patients = Session.GetDoctorPatients();
+                string prescriptionFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Information", "prescriptions.txt");
+                foreach (string patient in patients)
                 {
-                    string prescriptionInfo = $"{parts[0]}|{parts[1]}|{parts[2]}";
-                    PrescriptionBox.Items.Add(prescriptionInfo);
+                    PatientBox.Items.Add(patient);
+                }
+                foreach (string line in File.ReadAllLines(prescriptionFilePath))
+                {
+                    string[] parts = line.Split('|');
+                    if (parts.Length >= 3)
+                    {
+                        string prescriptionInfo = $"{parts[0]}|{parts[1]}|{parts[2]}";
+                        PrescriptionBox.Items.Add(prescriptionInfo);
+                    }
+                }
+            } else if (Session.UserRole == "Admin")
+            {
+                List<string[]> allPatients = Session.GetAllPatients();
+                string prescriptionFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Information", "prescriptions.txt");
+                foreach (string[] patient in allPatients)
+                {
+                    PatientBox.Items.Add(patient[0]);
+                }
+                foreach (string line in File.ReadAllLines(prescriptionFilePath))
+                {
+                    string[] parts = line.Split('|');
+                    if (parts.Length >= 3)
+                    {
+                        string prescriptionInfo = $"{parts[0]}|{parts[1]}|{parts[2]}";
+                        PrescriptionBox.Items.Add(prescriptionInfo);
+                    }
                 }
             }
         }
@@ -35,16 +56,19 @@
                 "Information",
                 patient + "_prescriptions.txt"
             );
+
             string prescriptionfilePath = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
                 "Information",
                 "prescriptions.txt"
             );
+
             string patientsAlertsFilePath = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
                 "Information",
                 patient + "_alerts.txt"
             );
+
             if (string.IsNullOrEmpty(patient) || string.IsNullOrEmpty(prescription))
             {
                 MessageBox.Show("Please select a patient and a prescription.");
@@ -75,7 +99,7 @@
             string date = DateTime.Now.ToString("MM/dd/yyyy");
             string alertMessage = $"New Prescription Added|{date}|'{selectedPrescriptionName}' added.";
             File.AppendAllText(patientsAlertsFilePath, alertMessage + Environment.NewLine);
-
+            Session.AddLog("Add Prescription", patient, $"Added prescription: {selectedPrescriptionName}");
             MessageBox.Show($"Prescription '{selectedPrescriptionName}' added for patient '{patient}'.");
         }
     }

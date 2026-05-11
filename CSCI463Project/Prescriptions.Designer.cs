@@ -39,6 +39,7 @@
             PrescriptionBox = new TextBox();
             AddPrescriptionButton = new Button();
             RemovePrescriptionButton = new Button();
+            AuditButton = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -235,7 +236,7 @@
             AddPrescriptionButton.FlatStyle = FlatStyle.Popup;
             AddPrescriptionButton.Font = new Font("Segoe UI", 12F);
             AddPrescriptionButton.ForeColor = Color.White;
-            AddPrescriptionButton.Location = new Point(632, 165);
+            AddPrescriptionButton.Location = new Point(632, 141);
             AddPrescriptionButton.Name = "AddPrescriptionButton";
             AddPrescriptionButton.Size = new Size(154, 86);
             AddPrescriptionButton.TabIndex = 7;
@@ -249,7 +250,7 @@
             RemovePrescriptionButton.FlatStyle = FlatStyle.Popup;
             RemovePrescriptionButton.Font = new Font("Segoe UI", 12F);
             RemovePrescriptionButton.ForeColor = Color.White;
-            RemovePrescriptionButton.Location = new Point(634, 275);
+            RemovePrescriptionButton.Location = new Point(632, 246);
             RemovePrescriptionButton.Name = "RemovePrescriptionButton";
             RemovePrescriptionButton.Size = new Size(154, 86);
             RemovePrescriptionButton.TabIndex = 8;
@@ -257,12 +258,27 @@
             RemovePrescriptionButton.UseVisualStyleBackColor = false;
             RemovePrescriptionButton.Click += RemovePrescriptionButton_Click;
             // 
+            // AuditButton
+            // 
+            AuditButton.BackColor = Color.FromArgb(64, 64, 64);
+            AuditButton.FlatStyle = FlatStyle.Popup;
+            AuditButton.Font = new Font("Segoe UI", 12F);
+            AuditButton.ForeColor = Color.White;
+            AuditButton.Location = new Point(632, 343);
+            AuditButton.Name = "AuditButton";
+            AuditButton.Size = new Size(154, 86);
+            AuditButton.TabIndex = 9;
+            AuditButton.Text = "Audit Inventory";
+            AuditButton.UseVisualStyleBackColor = false;
+            AuditButton.Click += AuditButton_Click;
+            // 
             // Prescriptions
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(796, 438);
+            Controls.Add(AuditButton);
             Controls.Add(RemovePrescriptionButton);
             Controls.Add(AddPrescriptionButton);
             Controls.Add(PrescriptionBox);
@@ -310,5 +326,6 @@
         private TextBox PrescriptionBox;
         private Button AddPrescriptionButton;
         private Button RemovePrescriptionButton;
+        private Button AuditButton;
     }
 }

@@ -9,23 +9,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Information\DT1204_appointments.txt" />
     <None Remove="Information\DT1204_messages.txt" />
     <None Remove="Information\DT1204_patients.txt" />
     <None Remove="Information\prescriptioninventory.txt" />
     <None Remove="Information\prescriptions.txt" />
     <None Remove="Information\PT1001_alerts.txt" />
+    <None Remove="Information\PT1001_appointments.txt" />
     <None Remove="Information\PT1001_doctors.txt" />
     <None Remove="Information\PT1001_messages.txt" />
     <None Remove="Information\PT1001_prescriptions.txt" />
     <None Remove="Information\PT1001_treatmentplan.txt" />
     <None Remove="Information\PT1002_alerts.txt" />
+    <None Remove="Information\PT1002_appointments.txt" />
     <None Remove="Information\PT1002_messages.txt" />
     <None Remove="Information\PT1002_prescriptions.txt" />
     <None Remove="Information\PT1002_treatmentplan.txt" />
+    <None Remove="Information\SystemLogs.txt" />
     <None Remove="Information\Users.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Information\DT1204_appointments.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Information\DT1204_messages.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -39,6 +46,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Information\PT1001_alerts.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Information\PT1001_appointments.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Information\PT1001_doctors.txt">
@@ -56,6 +66,9 @@
     <Content Include="Information\PT1002_alerts.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Information\PT1002_appointments.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Information\PT1002_messages.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -63,6 +76,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Information\PT1002_treatmentplan.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Information\SystemLogs.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
