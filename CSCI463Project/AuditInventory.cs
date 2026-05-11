@@ -53,20 +53,26 @@ namespace CSCI463Project
 
             string newInventory = inventoryNum.Text.Trim();
 
-            if (string.IsNullOrEmpty(newInventory))
+            if (string.IsNullOrEmpty(newInventory) || !int.TryParse(newInventory, out _))
             {
                 MessageBox.Show("Please enter a valid inventory number.", "Invalid Input");
                 return;
             }
 
-            string[] lines = File.ReadAllLines(filePath);
+            if (int.Parse(newInventory) < 0)
+            {
+                MessageBox.Show("Inventory number cannot be negative.", "Invalid Input");
+                return;
+            }
+
+                string[] lines = File.ReadAllLines(filePath);
             for (int i = 0; i < lines.Length; i++)
             {
                 string[] lineParts = lines[i].Split('|');
                 if (lineParts.Length >= 3 && lineParts[0].Trim() == medicationName)
                 {
                     lineParts[2] = newInventory;
-                    lines[i] = string.Join(" | ", lineParts);
+                    lines[i] = string.Join("|", lineParts);
                     break;
                 }
             }

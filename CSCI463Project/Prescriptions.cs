@@ -98,6 +98,9 @@
             }
             else if (Session.UserRole == "Admin")
             {
+                AppointmentsButton.Visible = false;
+                TreatmentPlanButton.Visible = false;
+                MessagesButton.Visible = false;
                 textBox1.Text = "Patients' Prescriptions";
                 List<string[]> allPatients = Session.GetAllPatients();
                 for (int i = 0; i < allPatients.Count; i++)

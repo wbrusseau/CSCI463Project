@@ -22,7 +22,7 @@ namespace CSCI463Project
 
         private void AddAlert_Load(object sender, EventArgs e)
         {
-            if (Session.Username == "Doctor")
+            if (Session.UserRole == "Doctor")
             {
                 List<string> patients = Session.GetDoctorPatients();
                 foreach (string patient in patients)
@@ -30,7 +30,7 @@ namespace CSCI463Project
                     PatientBox.Items.Add(patient);
                 }
             }
-            else if (Session.Username == "Admin")
+            else if (Session.UserRole == "Admin")
             {
                 List<string[]> allPatients = Session.GetAllPatients();
                 foreach (string[] patient in allPatients)
